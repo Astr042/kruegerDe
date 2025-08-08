@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { ServiceTags } from "./ServiceTags";
 import { MailtoLink } from "./MailtoLink";
 
@@ -123,8 +124,9 @@ export const Footer = () => {
 
         {/* Divider */}
         <div className="border-t border-slate-700/50 pt-8">
-          <div className="text-center">
-            <p className="text-slate-500 text-sm">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            {/* Copyright */}
+            <p className="text-slate-500 text-sm text-center sm:text-left">
               © 2025 Fabian Krüger • Entwickelt von{" "}
               <a
                 href="https://christian-hollatz.de"
@@ -135,6 +137,22 @@ export const Footer = () => {
                 Christian Hollatz
               </a>
             </p>
+
+            {/* Legal Links */}
+            <div className="flex gap-6 text-sm">
+              <Link
+                href="/imprint"
+                className="text-slate-400 hover:text-brand-primary-400 transition-colors duration-300"
+              >
+                Impressum
+              </Link>
+              <Link
+                href="/data-protection"
+                className="text-slate-400 hover:text-brand-primary-400 transition-colors duration-300"
+              >
+                Datenschutz
+              </Link>
+            </div>
           </div>
         </div>
       </div>
