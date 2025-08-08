@@ -9,7 +9,7 @@ import AudioPlayer, { AudioPlayerRef } from "./Audio/AudioPlayer";
 const Slideout: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const playerRef = useRef<AudioPlayerRef | undefined>(undefined);
+  const playerRef = useRef<AudioPlayerRef | null>(null);
 
   const pausePlayer = () => {
     if (playerRef.current) {
