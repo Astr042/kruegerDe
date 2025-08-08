@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { PlayPauseButton } from "../PlayPauseButton";
 
 interface VideoPlayerProps {
   videoSrc: string;
@@ -258,7 +259,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       {/* Play Button Overlay (only when not started yet) */}
       {!hasStarted && !isLoading && (
         <div className="rounded-3xl absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300 pointer-events-none">
-          <button
+          <div
             onClick={(e) => {
               e.stopPropagation();
               togglePlay();
@@ -266,20 +267,16 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             onTouchStart={(e) => {
               e.stopPropagation();
             }}
-            className="pointer-events-auto p-6 bg-brand-primary-500/90 hover:bg-brand-primary-500 active:bg-brand-primary-600 rounded-full shadow-2xl transform hover:scale-110 active:scale-105 transition-all duration-300 touch-manipulation"
+            className="pointer-events-auto transform hover:scale-110 active:scale-105 transition-all duration-300 touch-manipulation"
           >
-            <svg
-              className="w-12 h-12 text-white ml-1"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
+            <PlayPauseButton
+              isPlaying={isPlaying}
+              isLoading={isLoading}
+              onPlayPause={togglePlay}
+              size="lg"
+              className="p-6 shadow-2xl"
+            />
+          </div>
         </div>
       )}
 
@@ -330,36 +327,13 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             </button>
 
             {/* Play/Pause */}
-            <button
-              onClick={togglePlay}
-              className="p-3 bg-brand-primary-500 hover:bg-brand-primary-600 text-white rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
-            >
-              {isPlaying ? (
-                <svg
-                  className="w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="w-6 h-6"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              )}
-            </button>
+            <PlayPauseButton
+              isPlaying={isPlaying}
+              isLoading={false}
+              onPlayPause={togglePlay}
+              size="md"
+              className="p-3"
+            />
 
             {/* Skip Forward */}
             <button

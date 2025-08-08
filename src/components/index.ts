@@ -6,3 +6,4 @@ export * from "./Footer";
 export * from "./ServiceTags";
 export * from "./VoiceWave";
 export * from "./MailtoLink";
+export * from "./PlayPauseButton";
