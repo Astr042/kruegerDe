@@ -1,9 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
 import { PlayPauseButton } from "../PlayPauseButton";
+import { StaticImageData } from "next/image";
 
 interface VideoPlayerProps {
   videoSrc: string;
-  poster?: string;
+  poster?: string | StaticImageData;
   title?: string;
   rounded?: boolean;
 }
@@ -222,6 +223,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     return `${mins}:${secs.toString().padStart(2, "0")}`;
   };
 
+  // Get poster source (handle both string and StaticImageData)
+  const posterSrc = typeof poster === "string" ? poster : poster?.src;
+
   // Use fallback duration for progress calculation too
   const videoDuration = duration || videoRef.current?.duration || 0;
   const progress = videoDuration > 0 ? (currentTime / videoDuration) * 100 : 0;
@@ -238,7 +242,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       <video
         ref={videoRef}
         src={videoSrc}
-        poster={poster}
+        poster={posterSrc}
         className="w-full h-auto rounded-3xl"
         onClick={togglePlay}
         onTouchStart={(e) => {

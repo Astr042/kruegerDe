@@ -2,6 +2,9 @@ import React from "react";
 import korra from "../assets/korra.mp4";
 import vaiana from "../assets/vaiana.mp4";
 import darkShadows from "../assets/darkShadows.mp4";
+import korraPreview from "../assets/previews/korra-preview.jpg";
+import vaianaPreview from "../assets/previews/vaiana-preview.jpg";
+import darkShadowsPreview from "../assets/previews/darkShadows-preview.jpg";
 import jugger from "../assets/kapitel-1-jugger.mp3";
 import buch from "../assets/buch.png";
 import audibleLogo from "../assets/audible-logo.png";
@@ -23,18 +26,21 @@ const posts = [
     title: "Die Legende von Korra",
     description: "",
     videoSrc: korra,
+    poster: korraPreview,
     audioSrc: undefined,
   },
   {
     title: "Vaiana",
     description: "",
     videoSrc: vaiana,
+    poster: vaianaPreview,
     audioSrc: undefined,
   },
   {
     title: "Dark Shadows",
     description: "",
     videoSrc: darkShadows,
+    poster: darkShadowsPreview,
     audioSrc: undefined,
   },
 ];
@@ -211,6 +217,7 @@ export const Downloads = () => {
                     <div key={post.title} className="w-full min-w-0">
                       <VideoPlayer
                         videoSrc={post.videoSrc}
+                        poster={post.poster}
                         title={post.title}
                         rounded={true}
                       />
