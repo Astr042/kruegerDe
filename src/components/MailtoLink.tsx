@@ -16,20 +16,20 @@ export const MailtoLink: React.FC<MailtoLinkProps> = ({
 
   const variantClasses = {
     header:
-      "bg-slate-800/80 backdrop-blur-md rounded-2xl p-4 justify-center text-slate-200 hover:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500 hover:bg-slate-700/80 border border-slate-600/50",
+      "bg-slate-800/80 backdrop-blur-md rounded-2xl p-4 justify-center text-slate-200 hover:text-brand-primary-400 focus:outline-none focus:ring-2 focus:ring-brand-primary-500 hover:bg-slate-700/80 border border-slate-600/50",
     footer:
-      "gap-3 bg-slate-800/50 hover:bg-slate-700/50 px-6 py-3 rounded-2xl border border-slate-600/50 hover:border-orange-500/30",
+      "gap-3 bg-slate-800/50 hover:bg-slate-700/50 px-6 py-3 rounded-2xl border border-slate-600/50 hover:border-brand-primary-500/30",
   };
 
   const iconClasses =
     variant === "header"
       ? "h-6 w-6 mr-3 group-hover:scale-110 transition-transform duration-300"
-      : "w-5 h-5 text-orange-400 group-hover:scale-110 transition-transform duration-300";
+      : "w-5 h-5 text-brand-primary-400 group-hover:scale-110 transition-transform duration-300";
 
   const textClasses =
     variant === "header"
       ? "text-sm font-medium"
-      : "text-slate-300 group-hover:text-orange-400 transition-colors duration-300";
+      : "text-slate-300 group-hover:text-brand-primary-400 transition-colors duration-300";
 
   return (
     <a

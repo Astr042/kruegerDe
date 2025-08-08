@@ -117,7 +117,7 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
 
   return (
     <div
-      className={`group bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50 backdrop-blur-lg p-6 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/10 hover:border-orange-500/30 ${
+      className={`group bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50 backdrop-blur-lg p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-primary-500/10 hover:border-brand-primary-500/30 ${
         rounded ? "rounded-2xl" : ""
       }`}
     >
@@ -127,7 +127,7 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
           {Array.from({ length: 40 }).map((_, i) => (
             <div
               key={i}
-              className="w-1 bg-gradient-to-t from-orange-500 to-pink-500 rounded-full transition-all duration-1000"
+              className="w-1 bg-gradient-to-t from-brand-primary-500 to-brand-secondary-500 rounded-full transition-all duration-1000"
               style={{
                 height: `${playing ? Math.random() * 60 + 60 : 20}%`,
                 animationDelay: `${i * 0.1}s`,
@@ -144,7 +144,7 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
             onClick={handleSeek}
           >
             <div
-              className="h-full bg-gradient-to-r from-orange-500 to-pink-500 rounded-full relative transition-all duration-150 group-hover/progress:shadow-lg group-hover/progress:shadow-orange-500/50"
+              className="h-full bg-gradient-to-r from-brand-primary-500 to-brand-secondary-500 rounded-full relative transition-all duration-150 group-hover/progress:shadow-lg group-hover/progress:shadow-brand-primary-500/50"
               style={{ width: `${progress}%` }}
             >
               <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg opacity-0 group-hover/progress:opacity-100 transition-opacity duration-200"></div>
@@ -168,7 +168,7 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
                   audio.currentTime = Math.max(0, audio.currentTime - 10);
                 }
               }}
-              className="p-1 sm:p-2 text-slate-400 hover:text-orange-400 transition-colors duration-200 hover:scale-110 transform"
+              className="p-1 sm:p-2 text-slate-400 hover:text-brand-primary-400 transition-colors duration-200 hover:scale-110 transform"
             >
               <svg
                 className="w-4 h-4 sm:w-5 sm:h-5"
@@ -187,7 +187,7 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
             <button
               onClick={handlePlayPause}
               disabled={isLoading}
-              className="p-2 sm:p-3 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-full shadow-lg hover:shadow-xl hover:shadow-orange-500/25 transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-2 sm:p-3 bg-gradient-to-r from-brand-primary-500 to-brand-secondary-500 text-white rounded-full shadow-lg hover:shadow-xl hover:shadow-brand-primary-500/25 transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? (
                 <div className="w-5 h-5 sm:w-6 sm:h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -228,7 +228,7 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
                   );
                 }
               }}
-              className="p-1 sm:p-2 text-slate-400 hover:text-orange-400 transition-colors duration-200 hover:scale-110 transform"
+              className="p-1 sm:p-2 text-slate-400 hover:text-brand-primary-400 transition-colors duration-200 hover:scale-110 transform"
             >
               <svg
                 className="w-4 h-4 sm:w-5 sm:h-5"
@@ -271,7 +271,7 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
           <a
             href={audioSrc}
             download
-            className="p-1 sm:p-2 text-slate-400 hover:text-orange-400 transition-colors duration-200 hover:scale-110 transform"
+            className="p-1 sm:p-2 text-slate-400 hover:text-brand-primary-400 transition-colors duration-200 hover:scale-110 transform"
           >
             <svg
               className="w-4 h-4 sm:w-5 sm:h-5"
@@ -287,28 +287,6 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
           </a>
         </div>
       </div>
-      <style jsx>{`
-        .slider::-webkit-slider-thumb {
-          appearance: none;
-          width: 16px;
-          height: 16px;
-          border-radius: 50%;
-          background: #f97316;
-          cursor: pointer;
-          border: 2px solid #fff;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        .slider::-moz-range-thumb {
-          width: 16px;
-          height: 16px;
-          border-radius: 50%;
-          background: #f97316;
-          cursor: pointer;
-          border: 2px solid #fff;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-      `}</style>
     </div>
   );
 });

@@ -90,18 +90,18 @@ export const Downloads = () => {
   return (
     <div
       id="hörbuch"
-      className="relative min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 pt-20 pb-32 px-4 sm:px-6 lg:pt-32 lg:pb-40 lg:px-8 bg-animated"
+      className="relative min-h-screen bg-gradient-to-br from-slate-900 via-brand-secondary-900/20 to-slate-900 pt-20 pb-32 px-4 sm:px-6 lg:pt-32 lg:pb-40 lg:px-8 bg-animated"
     >
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-40 -left-20 w-80 h-80 bg-orange-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 -right-20 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-40 -left-20 w-80 h-80 bg-brand-primary-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 -right-20 w-96 h-96 bg-brand-accent-emerald-500/5 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative w-full max-w-6xl mx-auto">
         {/* Audiobook Section */}
         <div className="mb-24">
-          <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-slate-700/50 hover:border-orange-500/30 transition-all duration-500 group">
+          <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-slate-700/50 hover:border-brand-primary-500/30 transition-all duration-500 group">
             <div className="flex flex-col lg:flex-row items-center lg:items-start">
               <div className="relative mb-8 lg:mb-0 lg:mr-8">
                 <Image
@@ -109,13 +109,13 @@ export const Downloads = () => {
                   alt="Buchcover - Geschichten aus Tausend und einem Turnier"
                   className="w-72 lg:w-80 rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute -top-4 -right-4 bg-gradient-to-r from-orange-500 to-pink-500 text-white px-4 py-2 rounded-2xl text-sm font-semibold shadow-lg">
+                <div className="absolute -top-4 -right-4 bg-gradient-to-r from-brand-primary-500 to-brand-secondary-500 text-white px-4 py-2 rounded-2xl text-sm font-semibold shadow-lg">
                   Hörbuch
                 </div>
               </div>
 
               <div className="flex-1 text-center lg:text-left">
-                <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-400">
+                <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-brand-primary-400 to-brand-secondary-400">
                   Geschichten aus Tausend und einem Turnier
                 </h2>
 
@@ -127,7 +127,7 @@ export const Downloads = () => {
                 </p>
 
                 <div className="mb-8">
-                  <h3 className="text-xl font-semibold text-orange-400 mb-4 flex items-center justify-center lg:justify-start">
+                  <h3 className="text-xl font-semibold text-brand-primary-400 mb-4 flex items-center justify-center lg:justify-start">
                     <svg
                       className="w-6 h-6 mr-2"
                       fill="currentColor"
@@ -156,7 +156,7 @@ export const Downloads = () => {
                     href="https://www.audible.de/pd/Geschichten-aus-tausend-und-einem-Turnier-Hoerbuch/B0FL2Q93VT?source_code=ASSORAP0511160007"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-orange-500/25 transform hover:-translate-y-1 transition-all duration-300 group/audible"
+                    className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-brand-primary-500 to-brand-primary-600 hover:from-brand-primary-600 hover:to-brand-primary-700 text-white font-semibold rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-brand-primary-500/25 transform hover:-translate-y-1 transition-all duration-300 group/audible"
                   >
                     <Image
                       src={audibleLogo}
@@ -184,7 +184,7 @@ export const Downloads = () => {
 
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 mb-6">
+          <h2 className="text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-primary-400 via-brand-secondary-400 to-brand-accent-emerald-400 mb-6">
             Hörproben
           </h2>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
@@ -201,7 +201,7 @@ export const Downloads = () => {
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Video/Synchronisation Section */}
           <div className="space-y-8 min-w-0">
-            <h3 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 mb-8 px-4">
+            <h3 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-brand-accent-emerald-400 to-brand-accent-teal-400 mb-8 px-4">
               Synchronisation & Video
             </h3>
             <div className="space-y-8">
@@ -222,13 +222,13 @@ export const Downloads = () => {
 
           {/* Audio/Projects Section */}
           <div className="space-y-8 min-w-0">
-            <h3 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-400 mb-8 px-4">
+            <h3 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-brand-primary-400 to-brand-secondary-400 mb-8 px-4">
               Hörspiele & Projekte
             </h3>
             {projects.map((post, index) => (
               <div
                 key={post.title}
-                className="group bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl border border-slate-700/50 hover:border-orange-500/30 transition-all duration-500 hover:shadow-orange-500/10"
+                className="group bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl border border-slate-700/50 hover:border-brand-primary-500/30 transition-all duration-500 hover:shadow-brand-primary-500/10"
                 style={{ animationDelay: `${(index + posts.length) * 0.1}s` }}
               >
                 {post.audioSrc && (
@@ -239,7 +239,7 @@ export const Downloads = () => {
                         audioSrc={post.audioSrc}
                         rounded
                       />
-                      <div className="absolute -top-4 -right-4 bg-gradient-to-r from-orange-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      <div className="absolute -top-4 -right-4 bg-gradient-to-r from-brand-accent-emerald-500 to-brand-accent-teal-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
                         Audio
                       </div>
                     </div>
@@ -247,7 +247,7 @@ export const Downloads = () => {
                 )}
 
                 <div className="p-8 pt-6">
-                  <h4 className="text-2xl font-bold text-slate-200 mb-4 group-hover:text-orange-400 transition-colors duration-300">
+                  <h4 className="text-2xl font-bold text-slate-200 mb-4 group-hover:text-brand-primary-400 transition-colors duration-300">
                     {post.title}
                   </h4>
                   {post.description && (

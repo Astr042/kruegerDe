@@ -251,7 +251,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       {/* Loading Spinner */}
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-          <div className="w-12 h-12 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
+          <div className="w-12 h-12 border-4 border-brand-primary-500 border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
 
@@ -266,7 +266,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             onTouchStart={(e) => {
               e.stopPropagation();
             }}
-            className="pointer-events-auto p-6 bg-orange-500/90 hover:bg-orange-500 active:bg-orange-600 rounded-full shadow-2xl transform hover:scale-110 active:scale-105 transition-all duration-300 touch-manipulation"
+            className="pointer-events-auto p-6 bg-brand-primary-500/90 hover:bg-brand-primary-500 active:bg-brand-primary-600 rounded-full shadow-2xl transform hover:scale-110 active:scale-105 transition-all duration-300 touch-manipulation"
           >
             <svg
               className="w-12 h-12 text-white ml-1"
@@ -298,7 +298,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             onClick={handleSeek}
           >
             <div
-              className="h-full bg-gradient-to-r from-orange-500 to-pink-500 rounded-full relative transition-all duration-150"
+              className="h-full bg-gradient-to-r from-brand-primary-500 to-brand-secondary-500 rounded-full relative transition-all duration-150"
               style={{ width: `${progress}%` }}
             >
               <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg opacity-0 group-hover/progress:opacity-100 transition-opacity duration-200"></div>
@@ -318,7 +318,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             {/* Skip Backward */}
             <button
               onClick={() => skipTime(-10)}
-              className="p-2 text-white/80 hover:text-orange-400 transition-colors duration-200 hover:scale-110 transform"
+              className="p-2 text-white/80 hover:text-brand-primary-400 transition-colors duration-200 hover:scale-110 transform"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path
@@ -332,7 +332,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             {/* Play/Pause */}
             <button
               onClick={togglePlay}
-              className="p-3 bg-orange-500 hover:bg-orange-600 text-white rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+              className="p-3 bg-brand-primary-500 hover:bg-brand-primary-600 text-white rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
             >
               {isPlaying ? (
                 <svg
@@ -364,7 +364,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             {/* Skip Forward */}
             <button
               onClick={() => skipTime(10)}
-              className="p-2 text-white/80 hover:text-orange-400 transition-colors duration-200 hover:scale-110 transform"
+              className="p-2 text-white/80 hover:text-brand-primary-400 transition-colors duration-200 hover:scale-110 transform"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path
@@ -382,7 +382,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             <div className="flex items-center space-x-2">
               <button
                 onClick={toggleMute}
-                className="p-2 text-white/80 hover:text-orange-400 transition-colors duration-200"
+                className="p-2 text-white/80 hover:text-brand-primary-400 transition-colors duration-200"
               >
                 {isMuted || volume === 0 ? (
                   <svg
@@ -416,14 +416,14 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
                 max="100"
                 value={isMuted ? 0 : volume}
                 onChange={handleVolumeChange}
-                className="w-20 h-1 bg-white/20 rounded-lg appearance-none cursor-pointer slider"
+                className="w-20 h-1 bg-white/20 rounded-lg appearance-none cursor-pointer video-slider"
               />
             </div>
 
             {/* Fullscreen */}
             <button
               onClick={toggleFullscreen}
-              className="p-2 text-white/80 hover:text-orange-400 transition-colors duration-200 hover:scale-110 transform"
+              className="p-2 text-white/80 hover:text-brand-primary-400 transition-colors duration-200 hover:scale-110 transform"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path
@@ -438,7 +438,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             <a
               href={videoSrc}
               download
-              className="p-2 text-white/80 hover:text-orange-400 transition-colors duration-200 hover:scale-110 transform"
+              className="p-2 text-white/80 hover:text-brand-primary-400 transition-colors duration-200 hover:scale-110 transform"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path
@@ -454,33 +454,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
       {/* Title Overlay */}
       {title && (
-        <div className="absolute top-0 left-0 md:-top-4 md:-left-4 bg-gradient-to-r from-indigo-500 to-cyan-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+        <div className="absolute top-0 left-0 md:-top-4 md:-left-4 bg-gradient-to-r from-brand-accent-emerald-500 to-brand-accent-teal-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
           {title}
         </div>
       )}
-
-      <style jsx>{`
-        .slider::-webkit-slider-thumb {
-          appearance: none;
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          background: #f97316;
-          cursor: pointer;
-          border: 2px solid #fff;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .slider::-moz-range-thumb {
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          background: #f97316;
-          cursor: pointer;
-          border: 2px solid #fff;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-      `}</style>
     </div>
   );
 };

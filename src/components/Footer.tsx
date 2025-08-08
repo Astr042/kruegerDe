@@ -98,14 +98,14 @@ export const Footer = () => {
 
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-primary-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 right-0 w-80 h-80 bg-brand-accent-emerald-500/5 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-20 lg:px-8">
         {/* Main Footer Content */}
         <div className="text-center mb-12">
-          <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-400 mb-4">
+          <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-primary-400 to-brand-secondary-400 mb-4">
             Fabian Krüger
           </h3>
           <p className="text-slate-400 text-lg mb-8">
@@ -130,7 +130,7 @@ export const Footer = () => {
                 href="https://christian-hollatz.de"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-orange-400 hover:text-orange-300 transition-colors duration-300 underline decoration-dotted underline-offset-2"
+                className="text-brand-primary-400 hover:text-brand-primary-300 transition-colors duration-300 underline decoration-dotted underline-offset-2"
               >
                 Christian Hollatz
               </a>
