@@ -31,9 +31,17 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     if (!video) return;
 
     const updateTime = () => setCurrentTime(video.currentTime);
-    const updateDuration = () => setDuration(video.duration);
+    const updateDuration = () => {
+      setDuration(video.duration);
+    };
     const handleLoadStart = () => setIsLoading(true);
-    const handleCanPlay = () => setIsLoading(false);
+    const handleCanPlay = () => {
+      setIsLoading(false);
+      // Fallback: try to get duration here if not set
+      if (!duration && video.duration) {
+        setDuration(video.duration);
+      }
+    };
     const handleEnded = () => {
       setIsPlaying(false);
       setCurrentTime(0);
@@ -47,6 +55,11 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     video.addEventListener("canplay", handleCanPlay);
     video.addEventListener("ended", handleEnded);
 
+    // Manual check for duration in case events already fired
+    if (video.duration && video.duration > 0) {
+      setDuration(video.duration);
+    }
+
     return () => {
       video.removeEventListener("timeupdate", updateTime);
       video.removeEventListener("loadedmetadata", updateDuration);
@@ -57,7 +70,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         clearTimeout(hideControlsTimeoutRef.current);
       }
     };
-  }, []);
+  }, [duration]);
 
   // Auto-hide controls during playback
   useEffect(() => {
@@ -111,27 +124,44 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     }
   };
 
-  const togglePlay = () => {
+  const togglePlay = async () => {
     const video = videoRef.current;
     if (!video) return;
 
-    if (isPlaying) {
-      video.pause();
-    } else {
-      video.play();
+    try {
+      if (isPlaying) {
+        video.pause();
+        setIsPlaying(false);
+      } else {
+        await video.play();
+        setHasStarted(true);
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.error("Error playing video:", error);
+      // Fallback for mobile browsers
       setHasStarted(true);
+      setIsPlaying(!video.paused);
     }
-    setIsPlaying(!isPlaying);
   };
 
   const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
     const video = videoRef.current;
-    if (!video || !duration) return;
+    if (!video) {
+      return;
+    }
+
+    // Use video.duration directly as fallback
+    const videoDuration = duration || video.duration;
+
+    if (!videoDuration || videoDuration <= 0) {
+      return;
+    }
 
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const percentage = x / rect.width;
-    const newTime = percentage * duration;
+    const newTime = percentage * videoDuration;
 
     video.currentTime = newTime;
     setCurrentTime(newTime);
@@ -191,7 +221,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     return `${mins}:${secs.toString().padStart(2, "0")}`;
   };
 
-  const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
+  // Use fallback duration for progress calculation too
+  const videoDuration = duration || videoRef.current?.duration || 0;
+  const progress = videoDuration > 0 ? (currentTime / videoDuration) * 100 : 0;
 
   return (
     <div
@@ -208,6 +240,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         poster={poster}
         className="w-full h-auto rounded-3xl"
         onClick={togglePlay}
+        onTouchStart={(e) => {
+          // Prevent double-tap zoom on mobile
+          e.preventDefault();
+        }}
+        playsInline
+        webkit-playsinline="true"
       />
 
       {/* Loading Spinner */}
@@ -219,10 +257,16 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
       {/* Play Button Overlay (only when not started yet) */}
       {!hasStarted && !isLoading && (
-        <div className="rounded-3xl absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300">
+        <div className="rounded-3xl absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300 pointer-events-none">
           <button
-            onClick={togglePlay}
-            className="p-6 bg-orange-500/90 hover:bg-orange-500 rounded-full shadow-2xl transform hover:scale-110 transition-all duration-300"
+            onClick={(e) => {
+              e.stopPropagation();
+              togglePlay();
+            }}
+            onTouchStart={(e) => {
+              e.stopPropagation();
+            }}
+            className="pointer-events-auto p-6 bg-orange-500/90 hover:bg-orange-500 active:bg-orange-600 rounded-full shadow-2xl transform hover:scale-110 active:scale-105 transition-all duration-300 touch-manipulation"
           >
             <svg
               className="w-12 h-12 text-white ml-1"
@@ -242,7 +286,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       {/* Custom Controls */}
       <div
         className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 transition-all duration-300 ${
-          showControls ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+          showControls
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 translate-y-2 pointer-events-none"
         }`}
       >
         {/* Progress Bar */}
@@ -262,10 +308,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
           {/* Time Display */}
           <div className="flex justify-between text-sm text-white/80 mt-2">
             <span>{formatTime(currentTime)}</span>
-            <span>{formatTime(duration)}</span>
+            <span>{formatTime(videoDuration)}</span>
           </div>
         </div>
-
         {/* Control Buttons */}
         <div className="flex items-center justify-between">
           {/* Left Controls */}
