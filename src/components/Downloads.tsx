@@ -200,26 +200,29 @@ export const Downloads = () => {
         {/* Portfolio Grid */}
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Video/Synchronisation Section */}
-          <div className="space-y-8">
-            <h3 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 mb-8">
+          <div className="space-y-8 min-w-0">
+            <h3 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 mb-8 px-4">
               Synchronisation & Video
             </h3>
-            {posts.map(
-              (post) =>
-                post.videoSrc && (
-                  <VideoPlayer
-                    key={post.title}
-                    videoSrc={post.videoSrc}
-                    title={post.title}
-                    rounded={true}
-                  />
-                )
-            )}
+            <div className="space-y-8">
+              {posts.map(
+                (post) =>
+                  post.videoSrc && (
+                    <div key={post.title} className="w-full min-w-0">
+                      <VideoPlayer
+                        videoSrc={post.videoSrc}
+                        title={post.title}
+                        rounded={true}
+                      />
+                    </div>
+                  )
+              )}
+            </div>
           </div>
 
           {/* Audio/Projects Section */}
-          <div className="space-y-8">
-            <h3 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-400 mb-8">
+          <div className="space-y-8 min-w-0">
+            <h3 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-400 mb-8 px-4">
               Hörspiele & Projekte
             </h3>
             {projects.map((post, index) => (

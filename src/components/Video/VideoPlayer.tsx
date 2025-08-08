@@ -195,7 +195,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
   return (
     <div
-      className={`group relative overflow-visible bg-gradient-to-br from-slate-800 to-slate-900 transition-all duration-300 ${
+      className={`group relative md:overflow-visible overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900 transition-all duration-300 ${
         rounded ? "rounded-3xl" : ""
       }`}
       onMouseEnter={handleMouseEnter}
@@ -409,7 +409,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
       {/* Title Overlay */}
       {title && (
-        <div className="absolute -top-4 -left-4 bg-gradient-to-r from-indigo-500 to-cyan-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+        <div className="absolute top-0 left-0 md:-top-4 md:-left-4 bg-gradient-to-r from-indigo-500 to-cyan-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
           {title}
         </div>
       )}

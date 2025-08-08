@@ -160,7 +160,7 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
 
         {/* Controls */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-4">
             {/* Skip Backward */}
             <button
               onClick={() => {
@@ -168,9 +168,13 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
                   audio.currentTime = Math.max(0, audio.currentTime - 10);
                 }
               }}
-              className="p-2 text-slate-400 hover:text-orange-400 transition-colors duration-200 hover:scale-110 transform"
+              className="p-1 sm:p-2 text-slate-400 hover:text-orange-400 transition-colors duration-200 hover:scale-110 transform"
             >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <svg
+                className="w-4 h-4 sm:w-5 sm:h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
                 <path
                   fillRule="evenodd"
                   d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z"
@@ -183,13 +187,13 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
             <button
               onClick={handlePlayPause}
               disabled={isLoading}
-              className="p-3 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-full shadow-lg hover:shadow-xl hover:shadow-orange-500/25 transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-2 sm:p-3 bg-gradient-to-r from-orange-500 to-pink-500 text-white rounded-full shadow-lg hover:shadow-xl hover:shadow-orange-500/25 transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? (
-                <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                <div className="w-5 h-5 sm:w-6 sm:h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
               ) : playing ? (
                 <svg
-                  className="w-6 h-6"
+                  className="w-5 h-5 sm:w-6 sm:h-6"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -201,7 +205,7 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
                 </svg>
               ) : (
                 <svg
-                  className="w-6 h-6"
+                  className="w-5 h-5 sm:w-6 sm:h-6"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -224,9 +228,13 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
                   );
                 }
               }}
-              className="p-2 text-slate-400 hover:text-orange-400 transition-colors duration-200 hover:scale-110 transform"
+              className="p-1 sm:p-2 text-slate-400 hover:text-orange-400 transition-colors duration-200 hover:scale-110 transform"
             >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <svg
+                className="w-4 h-4 sm:w-5 sm:h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
                 <path
                   fillRule="evenodd"
                   d="M4.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414zm6 0a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L14.586 10l-4.293-4.293a1 1 0 010-1.414z"
@@ -237,9 +245,9 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
           </div>
 
           {/* Volume Control */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-1 sm:space-x-3">
             <svg
-              className="w-5 h-5 text-slate-400"
+              className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -255,7 +263,7 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
               max="100"
               value={volume}
               onChange={handleVolumeChange}
-              className="w-20 h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer slider"
+              className="w-12 sm:w-20 h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer slider"
             />
           </div>
 
@@ -263,9 +271,13 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
           <a
             href={audioSrc}
             download
-            className="p-2 text-slate-400 hover:text-orange-400 transition-colors duration-200 hover:scale-110 transform"
+            className="p-1 sm:p-2 text-slate-400 hover:text-orange-400 transition-colors duration-200 hover:scale-110 transform"
           >
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <svg
+              className="w-4 h-4 sm:w-5 sm:h-5"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
               <path
                 fillRule="evenodd"
                 d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
