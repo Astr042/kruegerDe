@@ -1,4 +1,6 @@
 import React from "react";
+import { ServiceTags } from "./ServiceTags";
+import { MailtoLink } from "./MailtoLink";
 
 // const navigation = {
 //   contact: [
@@ -86,38 +88,54 @@ import React from "react";
 
 export const Footer = () => {
   return (
-    <footer className="bg-gray-900" aria-labelledby="footer-heading">
+    <footer
+      className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-t border-slate-700/50"
+      aria-labelledby="footer-heading"
+    >
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-        {/* <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-          <div className="space-y-8 xl:col-span-1">
-            <img className="h-10" src={logo} alt="Company name" />
-          </div>
-          <div>
-            <h3 className="text-base font-semibold text-gray-400 tracking-wider uppercase">
-              Kontakt
-            </h3>
-            <ul className="mt-4 space-y-4">
-              {navigation.contact.map((item) => (
-                <li key={item.name}>
-                  <a
-                    href={item.href}
-                    className="text-sm text-gray-400 hover:text-gray-200 grid grid-cols-6"
-                  >
-                    <p className="col-auto">{item.name}:</p>
-                    <p className="col-auto">{item.text}</p>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div> */}
-        <div className="mt-12 border-t border-gray-200 pt-8">
-          <p className="text-base text-gray-400 xl:text-center">
-            2025, Christian Hollatz, Fabian Krüger
+
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-500/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="relative max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-20 lg:px-8">
+        {/* Main Footer Content */}
+        <div className="text-center mb-12">
+          <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-400 mb-4">
+            Fabian Krüger
+          </h3>
+          <p className="text-slate-400 text-lg mb-8">
+            Professioneller Sprecher für Synchronisation, Hörbücher und Werbung
           </p>
+
+          {/* Contact Info */}
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mb-8">
+            <MailtoLink email="fk.synchron@gmail.com" variant="footer" />
+          </div>
+
+          {/* Services Tags */}
+          <ServiceTags className="mb-12" />
+        </div>
+
+        {/* Divider */}
+        <div className="border-t border-slate-700/50 pt-8">
+          <div className="text-center">
+            <p className="text-slate-500 text-sm">
+              © 2025 Fabian Krüger • Entwickelt von{" "}
+              <a
+                href="https://christian-hollatz.de"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-orange-400 hover:text-orange-300 transition-colors duration-300 underline decoration-dotted underline-offset-2"
+              >
+                Christian Hollatz
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

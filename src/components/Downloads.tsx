@@ -1,5 +1,4 @@
 import React from "react";
-import { AudioButton } from "./Audio";
 import korra from "../assets/korra.mp4";
 import vaiana from "../assets/vaiana.mp4";
 import darkShadows from "../assets/darkShadows.mp4";
@@ -7,6 +6,7 @@ import jugger from "../assets/kapitel-1-jugger.mp3";
 import buch from "../assets/buch.png";
 import audibleLogo from "../assets/audible-logo.png";
 import Image from "next/image";
+import { VideoPlayer } from "./Video";
 
 import helikopter from "../assets/helikopter.mp3";
 import herrenmode from "../assets/herrenmode.mp3";
@@ -16,6 +16,7 @@ import sandmann from "../assets/sandmann.mp3";
 import fragezeichen from "../assets/3Fragezeichen.mp3";
 import werther from "../assets/wer-schoss-auf-werther.mp3";
 import AudioPlayer from "./Audio/AudioPlayer";
+import { VoiceWave } from "./VoiceWave";
 
 const posts = [
   {
@@ -87,52 +88,93 @@ const projects = [
 
 export const Downloads = () => {
   return (
-    <div className="relative bg-gray-800 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
-      <div className="relative w-full md:w-2/3 mx-auto">
+    <div
+      id="hörbuch"
+      className="relative min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 pt-20 pb-32 px-4 sm:px-6 lg:pt-32 lg:pb-40 lg:px-8 bg-animated"
+    >
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-40 -left-20 w-80 h-80 bg-orange-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 -right-20 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="relative w-full max-w-6xl mx-auto">
         {/* Audiobook Section */}
-        <div className="mb-16">
-          <div className="bg-gray-700 rounded-lg p-6 shadow-lg">
-            <div className="flex flex-col lg:flex-row">
-              <Image
-                src={buch}
-                alt="Buchcover"
-                className="w-full lg:w-64 lg:pr-6 mb-4 lg:mb-0"
-              />
-              <div className="flex-1">
-                <h2 className="text-2xl font-bold mb-4 text-blue-400">
+        <div className="mb-24">
+          <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-slate-700/50 hover:border-orange-500/30 transition-all duration-500 group">
+            <div className="flex flex-col lg:flex-row items-center lg:items-start">
+              <div className="relative mb-8 lg:mb-0 lg:mr-8">
+                <Image
+                  src={buch}
+                  alt="Buchcover - Geschichten aus Tausend und einem Turnier"
+                  className="w-72 lg:w-80 rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute -top-4 -right-4 bg-gradient-to-r from-orange-500 to-pink-500 text-white px-4 py-2 rounded-2xl text-sm font-semibold shadow-lg">
+                  Hörbuch
+                </div>
+              </div>
+
+              <div className="flex-1 text-center lg:text-left">
+                <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-400">
                   Geschichten aus Tausend und einem Turnier
                 </h2>
-                <p className="text-gray-200 mb-4">
-                  Ist zum einen eine anekdotische Nacherzählung die den
-                  Werdegang und die Erlebnisse eines Juggerspielers, der
-                  zufällig auch noch mein Bruder ist, und zum anderen eine
-                  Sammlung an märchenhaften Geschichten anderer aus der Szene,
-                  rund um die Entstehung und die Commmunity. Du weißt nicht was
-                  Jugger ist? Das erkläre ich Dir direkt im ersten Kapitel in
-                  das Du hier schoneinmal reinlauschen kannst
+
+                <p className="text-slate-300 mb-8 text-lg leading-relaxed">
+                  Eine anekdotische Nacherzählung über den Werdegang und die
+                  Erlebnisse eines Juggerspielers, und eine Sammlung
+                  märchenhafter Geschichten aus der Szene. Du weißt nicht was
+                  Jugger ist? Das erkläre ich Dir direkt im ersten Kapitel!
                 </p>
-                <div className="mb-4">
+
+                <div className="mb-8">
+                  <h3 className="text-xl font-semibold text-orange-400 mb-4 flex items-center justify-center lg:justify-start">
+                    <svg
+                      className="w-6 h-6 mr-2"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Kapitel 1 - Kostenlose Hörprobe
+                  </h3>
                   <AudioPlayer
                     rounded
                     key="jugger-audiobook"
                     audioSrc={jugger}
                   />
                 </div>
-                <div className="text-gray-200">
-                  <p className="mb-3">
+
+                <div className="text-center lg:text-left">
+                  <p className="text-slate-300 mb-6 text-lg">
                     Das komplette Hörbuch findest Du auf Audible:
                   </p>
                   <a
                     href="https://www.audible.de/pd/Geschichten-aus-tausend-und-einem-Turnier-Hoerbuch/B0FL2Q93VT?source_code=ASSORAP0511160007"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block hover:opacity-80 hover:scale-105 transition-all duration-200 bg-orange-500 hover:bg-orange-600 rounded-lg p-3 shadow-lg"
+                    className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-orange-500/25 transform hover:-translate-y-1 transition-all duration-300 group/audible"
                   >
                     <Image
                       src={audibleLogo}
-                      alt="Jetzt auf Audible anhören - Hier klicken"
-                      className="h-8 w-auto"
+                      alt=""
+                      className="h-8 w-auto mr-3 group-hover/audible:scale-110 transition-transform duration-300"
                     />
+                    <span>Jetzt auf Audible anhören</span>
+                    <svg
+                      className="w-5 h-5 ml-2 group-hover/audible:translate-x-1 transition-transform duration-300"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
                   </a>
                 </div>
               </div>
@@ -140,105 +182,89 @@ export const Downloads = () => {
           </div>
         </div>
 
-        <div className="text-center">
-          <h2 className="text-3xl tracking-tight font-extrabold text-blue-400 sm:text-4xl">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-pink-400 to-purple-400 mb-6">
             Hörproben
           </h2>
-          <p className="mt-3 mx-auto text-xl text-gray-200 sm:mt-4 leading-8">
-            Hier ein paar (Hör-) Proben meiner bisherigen Arbeiten
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            Hier ein paar Proben meiner bisherigen Arbeiten - von
+            Synchronisation bis hin zu Hörspielen
+          </p>
+
+          <div className="flex justify-center mt-8">
+            <VoiceWave />
+          </div>
+        </div>
+
+        {/* Portfolio Grid */}
+        <div className="grid gap-8 lg:grid-cols-2">
+          {/* Video/Synchronisation Section */}
+          <div className="space-y-8">
+            <h3 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 mb-8">
+              Synchronisation & Video
+            </h3>
+            {posts.map(
+              (post) =>
+                post.videoSrc && (
+                  <VideoPlayer
+                    key={post.title}
+                    videoSrc={post.videoSrc}
+                    title={post.title}
+                    rounded={true}
+                  />
+                )
+            )}
+          </div>
+
+          {/* Audio/Projects Section */}
+          <div className="space-y-8">
+            <h3 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-400 mb-8">
+              Hörspiele & Projekte
+            </h3>
+            {projects.map((post, index) => (
+              <div
+                key={post.title}
+                className="group bg-gradient-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl border border-slate-700/50 hover:border-orange-500/30 transition-all duration-500 hover:shadow-orange-500/10"
+                style={{ animationDelay: `${(index + posts.length) * 0.1}s` }}
+              >
+                {post.audioSrc && (
+                  <div className="p-6 pb-0">
+                    <div className="relative">
+                      <AudioPlayer
+                        key={post.title}
+                        audioSrc={post.audioSrc}
+                        rounded
+                      />
+                      <div className="absolute -top-4 -right-4 bg-gradient-to-r from-orange-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        Audio
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <div className="p-8 pt-6">
+                  <h4 className="text-2xl font-bold text-slate-200 mb-4 group-hover:text-orange-400 transition-colors duration-300">
+                    {post.title}
+                  </h4>
+                  {post.description && (
+                    <p className="text-slate-400 leading-relaxed">
+                      {post.description}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Footer Note */}
+        <div className="text-center mt-16">
+          <p className="text-slate-400 text-sm bg-slate-800/50 rounded-2xl p-4 backdrop-blur border border-slate-700/50">
+            💡 <strong>Hinweis:</strong> Sollten Sie Probleme mit dem Abspielen
+            der Dateien haben, deaktivieren Sie bitte Ihren Adblocker.
           </p>
         </div>
-
-        <div className="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-2 lg:max-w-none">
-          <div>
-            {posts.map((post) => (
-              <div
-                key={post.title}
-                className="flex flex-col rounded-lg shadow-lg overflow-hidden mb-8"
-              >
-                {post.audioSrc && (
-                  <div className="flex-shrink-0">
-                    <AudioPlayer key={post.title} audioSrc={post.audioSrc} />
-                  </div>
-                )}
-
-                <div className="flex-1 bg-gray-700 p-6 flex flex-col justify-between">
-                  <div className="flex-1">
-                    <div className="block mt-2">
-                      <p className="text-xl font-semibold text-gray-200">
-                        {post.title}
-                      </p>
-                      <p className="mt-3 text-base text-gray-200">
-                        {post.description}
-                      </p>
-                    </div>
-                  </div>
-                  {post.videoSrc && (
-                    <div style={{ alignSelf: "end" }}>
-                      <AudioButton
-                        type="download"
-                        downloadSrc={post.videoSrc}
-                      />
-                    </div>
-                  )}
-                </div>
-                {post.videoSrc && (
-                  <div className="flex-shrink-0">
-                    <video width="100%" height="auto" controls>
-                      <source src={post.videoSrc} type="video/mp4" />
-                    </video>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-          <div>
-            {projects.map((post) => (
-              <div
-                key={post.title}
-                className="flex flex-col rounded-lg shadow-lg overflow-hidden mb-8"
-              >
-                {post.audioSrc && (
-                  <div className="flex-shrink-0">
-                    <AudioPlayer key={post.title} audioSrc={post.audioSrc} />
-                  </div>
-                )}
-
-                <div className="flex-1 bg-gray-700 p-6 flex flex-col justify-between">
-                  <div className="flex-1">
-                    <div className="block mt-2">
-                      <p className="text-xl font-semibold text-gray-200">
-                        {post.title}
-                      </p>
-                      <p className="mt-3 text-base text-gray-200">
-                        {post.description}
-                      </p>
-                    </div>
-                  </div>
-                  {post.videoSrc && (
-                    <div style={{ alignSelf: "end" }}>
-                      <AudioButton
-                        type="download"
-                        downloadSrc={post.videoSrc}
-                      />
-                    </div>
-                  )}
-                </div>
-                {post.videoSrc && (
-                  <div className="flex-shrink-0">
-                    <video width="100%" height="auto" controls>
-                      <source src={post.videoSrc} type="video/mp4" />
-                    </video>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-        <p className="text-gray-200 text-xs mt-4">
-          Sollten Sie Probleme mit dem Abspielen der Dateien haben, deaktivieren
-          Sie bitte Ihren Adblocker.
-        </p>
       </div>
     </div>
   );
