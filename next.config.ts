@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   webpack: function (config) {
     config.module.rules.push({
       test: /\.mp4$/,

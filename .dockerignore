@@ -1,0 +1,11 @@
+.git
+.next
+out
+node_modules
+.env*
+*.xlsx
+*.md
+Dockerfile
+.dockerignore
+deploy.sh
+npm-debug.log*

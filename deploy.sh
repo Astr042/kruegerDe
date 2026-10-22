@@ -19,7 +19,7 @@ git pull
 
 # Step 2: Docker-Image bauen
 echo "Baue Docker-Image..."
-docker build -f Dockerfile -t $DOCKER_CONTAINER_NAME .
+docker build --pull -f Dockerfile -t $DOCKER_CONTAINER_NAME .
 
 # Step 3: Container stoppen und entfernen, falls er schon läuft
 echo "Stoppe den alten Container (falls vorhanden)..."

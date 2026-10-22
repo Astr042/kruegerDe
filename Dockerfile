@@ -1,29 +1,40 @@
-# Beispiel Dockerfile
+# Basis: aktuelles Node.js-LTS-Image mit eingespielten Alpine-Sicherheitsupdates
+FROM node:24-alpine AS base
+RUN apk upgrade --no-cache
+ENV NEXT_TELEMETRY_DISABLED=1
 
-# Verwende das Node.js-Image
-FROM node:22-alpine
-
-# Setze das Arbeitsverzeichnis
+# Installiere die Abhängigkeiten exakt nach package-lock.json
+FROM base AS deps
 WORKDIR /app
-
-# Kopiere package.json und package-lock.json
-COPY package*.json ./
-
-# Installiere die Abhängigkeiten
-RUN npm install --frozen-lockfile
-
-# Kopiere den Rest der Anwendung
-COPY . .
-
-# Setze Umgebungsvariablen für Next.js
-ENV NEXT_PUBLIC_API_URL=https://api.example.com
-ENV NEXT_PUBLIC_ENV=production
+COPY package.json package-lock.json ./
+RUN npm ci
 
 # Baue die Anwendung
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
 RUN npm run build
 
-# Exponiere den Port
-EXPOSE 4002
+# Laufzeit-Image: nur der Standalone-Build, ohne Quellcode und devDependencies
+FROM base AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
 
-# Startbefehl
-CMD ["npm", "start"]
+# npm und yarn werden zur Laufzeit nicht gebraucht
+RUN rm -rf /usr/local/lib/node_modules/npm /usr/local/bin/npm /usr/local/bin/npx /opt/yarn* /usr/local/bin/yarn /usr/local/bin/yarnpkg
+
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+
+# Nur der Bild-Cache von next/image muss beschreibbar sein
+RUN mkdir -p .next/cache && chown -R node:node .next/cache
+
+USER node
+
+EXPOSE 3000
+
+CMD ["node", "server.js"]
