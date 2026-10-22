@@ -113,7 +113,7 @@ export const Downloads = () => {
                 <Image
                   src={buch}
                   alt="Buchcover - Geschichten aus Tausend und einem Turnier"
-                  className="w-72 lg:w-80 rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
+                  className="w-72 lg:w-80 rounded-2xl shadow-2xl"
                 />
                 <div className="absolute -top-4 -right-4 bg-linear-to-r from-brand-primary-500 to-brand-secondary-500 text-white px-4 py-2 rounded-2xl text-sm font-semibold shadow-lg">
                   Hörbuch
@@ -167,7 +167,7 @@ export const Downloads = () => {
                     <Image
                       src={audibleLogo}
                       alt=""
-                      className="h-8 w-auto mr-3 group-hover/audible:scale-110 transition-transform duration-300"
+                      className="h-8 w-auto mr-3"
                     />
                     <span>Jetzt auf Audible anhören</span>
                     <svg

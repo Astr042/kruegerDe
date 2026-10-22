@@ -2,6 +2,7 @@ export * from "./Navbar";
 export * from "./Header";
 export * from "./About";
 export * from "./Downloads";
+export * from "./Projects";
 export * from "./Footer";
 export * from "./ServiceTags";
 export * from "./VoiceWave";

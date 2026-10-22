@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Downloads, Footer, Header, Navbar } from "../components";
+import { Downloads, Footer, Header, Navbar, Projects } from "../components";
 import Konami from "react-konami-code";
 import mouse from "../assets/2mouse.png";
 import "./globals.css";
@@ -22,6 +22,7 @@ const App = () => {
       <Navbar />
       <Header />
       <Downloads />
+      <Projects />
       <Footer />
     </div>
   );
