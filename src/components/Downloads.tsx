@@ -5,10 +5,10 @@ import darkShadows from "../assets/darkShadows.mp4";
 import korraPreview from "../assets/previews/korra-preview.jpg";
 import vaianaPreview from "../assets/previews/vaiana-preview.jpg";
 import darkShadowsPreview from "../assets/previews/darkShadows-preview.jpg";
-import jugger from "../assets/kapitel-1-jugger.mp3";
-import buch from "../assets/buch.png";
-import audibleLogo from "../assets/audible-logo.png";
-import Image from "next/image";
+// import jugger from "../assets/kapitel-1-jugger.mp3";
+// import buch from "../assets/buch.png";
+// import audibleLogo from "../assets/audible-logo.png";
+// import Image from "next/image";
 import { VideoPlayer } from "./Video";
 
 import helikopter from "../assets/helikopter.mp3";
@@ -105,7 +105,7 @@ export const Downloads = () => {
       </div>
 
       <div className="relative w-full max-w-6xl mx-auto">
-        {/* Audiobook Section */}
+        {/* Audiobook Section – hidden for now, the Projekte section replaces it
         <div className="mb-24">
           <div className="bg-linear-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-slate-700/50 hover:border-brand-primary-500/30 transition-all duration-500 group">
             <div className="flex flex-col lg:flex-row items-center lg:items-start">
@@ -187,6 +187,7 @@ export const Downloads = () => {
             </div>
           </div>
         </div>
+        */}
 
         {/* Section Header */}
         <div id="hörproben" className="text-center mb-16">

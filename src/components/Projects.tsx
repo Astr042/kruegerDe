@@ -138,7 +138,6 @@ const projects: Project[] = [
       href: "https://www.audible.de/pd/Geschichten-aus-tausend-und-einem-Turnier-Hoerbuch/B0FL2Q93VT",
       label: "Auf Audible",
     },
-    sampleHref: "#hörbuch",
   },
   {
     title: "Wer schoss auf Werther?",
@@ -252,6 +251,11 @@ const ProjectCard = ({ project }: { project: Project }) => (
     )}
 
     <div className="flex flex-col flex-1 p-6">
+      {project.credit && (
+        <p className="text-xs text-slate-500 -mt-3 mb-3">
+          Bild: {project.credit}
+        </p>
+      )}
       <p className="text-sm text-brand-primary-400 font-medium mb-2">
         {formatMonth(project.date)}
       </p>
@@ -291,10 +295,6 @@ const ProjectCard = ({ project }: { project: Project }) => (
           </a>
         )}
       </div>
-
-      {project.credit && (
-        <p className="text-xs text-slate-500 mt-4">Bild: {project.credit}</p>
-      )}
     </div>
   </article>
 );

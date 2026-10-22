@@ -21,8 +21,8 @@ const App = () => {
       <Konami action={easterEgg} />
       <Navbar />
       <Header />
-      <Downloads />
       <Projects />
+      <Downloads />
       <Footer />
     </div>
   );
