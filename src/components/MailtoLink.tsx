@@ -16,7 +16,7 @@ export const MailtoLink: React.FC<MailtoLinkProps> = ({
 
   const variantClasses = {
     header:
-      "bg-slate-800/80 backdrop-blur-md rounded-2xl p-4 justify-center text-slate-200 hover:text-brand-primary-400 focus:outline-none focus:ring-2 focus:ring-brand-primary-500 hover:bg-slate-700/80 border border-slate-600/50",
+      "bg-slate-800/80 backdrop-blur-md rounded-2xl p-4 justify-center text-slate-200 hover:text-brand-primary-400 focus:outline-hidden focus:ring-2 focus:ring-brand-primary-500 hover:bg-slate-700/80 border border-slate-600/50",
     footer:
       "gap-3 bg-slate-800/50 hover:bg-slate-700/50 px-6 py-3 rounded-2xl border border-slate-600/50 hover:border-brand-primary-500/30",
   };

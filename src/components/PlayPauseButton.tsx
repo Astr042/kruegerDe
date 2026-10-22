@@ -38,7 +38,7 @@ export const PlayPauseButton: React.FC<PlayPauseButtonProps> = ({
     <button
       onClick={onPlayPause}
       disabled={isLoading}
-      className={`${sizeClasses[size]} bg-gradient-to-r from-brand-primary-500 to-brand-secondary-500 text-white rounded-full shadow-lg hover:shadow-xl hover:shadow-brand-primary-500/25 transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
+      className={`${sizeClasses[size]} bg-linear-to-r from-brand-primary-500 to-brand-secondary-500 text-white rounded-full shadow-lg hover:shadow-xl hover:shadow-brand-primary-500/25 transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
     >
       {isLoading ? (
         <div

@@ -232,7 +232,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
   return (
     <div
-      className={`group relative md:overflow-visible overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900 transition-all duration-300 ${
+      className={`group relative md:overflow-visible overflow-hidden bg-linear-to-br from-slate-800 to-slate-900 transition-all duration-300 ${
         rounded ? "rounded-3xl" : ""
       }`}
       onMouseEnter={handleMouseEnter}
@@ -286,7 +286,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
       {/* Custom Controls */}
       <div
-        className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 transition-all duration-300 ${
+        className={`absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 via-black/40 to-transparent p-6 transition-all duration-300 ${
           showControls
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 translate-y-2 pointer-events-none"
@@ -299,7 +299,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             onClick={handleSeek}
           >
             <div
-              className="h-full bg-gradient-to-r from-brand-primary-500 to-brand-secondary-500 rounded-full relative transition-all duration-150"
+              className="h-full bg-linear-to-r from-brand-primary-500 to-brand-secondary-500 rounded-full relative transition-all duration-150"
               style={{ width: `${progress}%` }}
             >
               <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg opacity-0 group-hover/progress:opacity-100 transition-opacity duration-200"></div>
@@ -432,7 +432,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
       {/* Title Overlay */}
       {title && (
-        <div className="absolute top-0 left-0 md:-top-4 md:-left-4 bg-gradient-to-r from-brand-accent-emerald-500 to-brand-accent-teal-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+        <div className="absolute top-0 left-0 md:-top-4 md:-left-4 bg-linear-to-r from-brand-accent-emerald-500 to-brand-accent-teal-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
           {title}
         </div>
       )}

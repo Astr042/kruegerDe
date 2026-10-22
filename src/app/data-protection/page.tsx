@@ -10,7 +10,7 @@ const DataProtectionPage = () => {
       <Navbar />
 
       {/* Main Content */}
-      <main className="relative min-h-screen bg-gradient-to-br from-slate-900 via-brand-secondary-900/20 to-slate-900 pt-20 pb-16 px-4 sm:px-6 lg:pt-32 lg:pb-24 lg:px-8">
+      <main className="relative min-h-screen bg-linear-to-br from-slate-900 via-brand-secondary-900/20 to-slate-900 pt-20 pb-16 px-4 sm:px-6 lg:pt-32 lg:pb-24 lg:px-8">
         {/* Background decoration */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-40 -left-20 w-80 h-80 bg-brand-primary-500/5 rounded-full blur-3xl"></div>
@@ -19,9 +19,9 @@ const DataProtectionPage = () => {
 
         <div className="relative max-w-4xl mx-auto">
           {/* Content Container */}
-          <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl rounded-3xl p-8 lg:p-12 shadow-2xl border border-slate-700/50">
+          <div className="bg-linear-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl rounded-3xl p-8 lg:p-12 shadow-2xl border border-slate-700/50">
             {/* Header */}
-            <h1 className="text-4xl lg:text-5xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-brand-primary-400 to-brand-secondary-400">
+            <h1 className="text-4xl lg:text-5xl font-bold mb-8 text-transparent bg-clip-text bg-linear-to-r from-brand-primary-400 to-brand-secondary-400">
               Datenschutzerklärung
             </h1>
 
@@ -515,7 +515,7 @@ const DataProtectionPage = () => {
             <div className="mt-12 text-center">
               <Link
                 href="/"
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-brand-primary-500 to-brand-primary-600 hover:from-brand-primary-600 hover:to-brand-primary-700 text-white font-semibold rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-brand-primary-500/25 transform hover:-translate-y-1 transition-all duration-300 group"
+                className="inline-flex items-center px-8 py-4 bg-linear-to-r from-brand-primary-500 to-brand-primary-600 hover:from-brand-primary-600 hover:to-brand-primary-700 text-white font-semibold rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-brand-primary-500/25 transform hover:-translate-y-1 transition-all duration-300 group"
               >
                 <svg
                   className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform duration-300"

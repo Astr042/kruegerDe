@@ -118,7 +118,7 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
 
   return (
     <div
-      className={`group bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50 backdrop-blur-lg p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-primary-500/10 hover:border-brand-primary-500/30 ${
+      className={`group bg-linear-to-br from-slate-800 to-slate-900 border border-slate-700/50 backdrop-blur-lg p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-primary-500/10 hover:border-brand-primary-500/30 ${
         rounded ? "rounded-2xl" : ""
       }`}
     >
@@ -128,7 +128,7 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
           {Array.from({ length: 40 }).map((_, i) => (
             <div
               key={i}
-              className="w-1 bg-gradient-to-t from-brand-primary-500 to-brand-secondary-500 rounded-full transition-all duration-1000"
+              className="w-1 bg-linear-to-t from-brand-primary-500 to-brand-secondary-500 rounded-full transition-all duration-1000"
               style={{
                 height: `${playing ? Math.random() * 60 + 60 : 20}%`,
                 animationDelay: `${i * 0.1}s`,
@@ -145,7 +145,7 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
             onClick={handleSeek}
           >
             <div
-              className="h-full bg-gradient-to-r from-brand-primary-500 to-brand-secondary-500 rounded-full relative transition-all duration-150 group-hover/progress:shadow-lg group-hover/progress:shadow-brand-primary-500/50"
+              className="h-full bg-linear-to-r from-brand-primary-500 to-brand-secondary-500 rounded-full relative transition-all duration-150 group-hover/progress:shadow-lg group-hover/progress:shadow-brand-primary-500/50"
               style={{ width: `${progress}%` }}
             >
               <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg opacity-0 group-hover/progress:opacity-100 transition-opacity duration-200"></div>

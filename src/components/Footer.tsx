@@ -90,7 +90,7 @@ import { MailtoLink } from "./MailtoLink";
 export const Footer = () => {
   return (
     <footer
-      className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-t border-slate-700/50"
+      className="relative bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 border-t border-slate-700/50"
       aria-labelledby="footer-heading"
     >
       <h2 id="footer-heading" className="sr-only">
@@ -106,7 +106,7 @@ export const Footer = () => {
       <div className="relative max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-20 lg:px-8">
         {/* Main Footer Content */}
         <div className="text-center mb-12">
-          <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-primary-400 to-brand-secondary-400 mb-4">
+          <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-brand-primary-400 to-brand-secondary-400 mb-4">
             Fabian Krüger
           </h3>
           <p className="text-slate-400 text-lg mb-8">

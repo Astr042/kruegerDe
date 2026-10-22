@@ -4,27 +4,26 @@ This document explains the custom color system implemented in the Tailwind confi
 
 ## Brand Colors
 
-All brand colors are defined in `tailwind.config.ts` under the `brand` namespace. This allows for easy rebranding by simply changing the color values in one place.
+All brand colors are defined as Tailwind v4 theme variables in the `@theme` block of `src/app/globals.css` (prefixed `--color-brand-*`). This allows for easy rebranding by simply changing the color values in one place.
 
 ### Primary Brand Color (`brand-primary-*`)
 
 The main brand color used throughout the site (currently orange).
 
-```typescript
-brand: {
-  primary: {
-    50: '#fff7ed',   // Very light shade
-    100: '#ffedd5',
-    200: '#fed7aa',
-    300: '#fdba74',  // Used for hover states and accents
-    400: '#fb923c',  // Used for text highlights
-    500: '#f97316',  // Main brand color
-    600: '#ea580c',  // Used for hover states on buttons
-    700: '#c2410c',  // Darker variant
-    800: '#9a3412',  // Very dark variant
-    900: '#7c2d12',
-    950: '#431407',
-  }
+```css
+@theme {
+  /* Replace primary values with blue */
+  --color-brand-primary-300: #93c5fd; /* blue-300 */
+  --color-brand-primary-400: #60a5fa; /* blue-400 */
+  --color-brand-primary-500: #3b82f6; /* blue-500 - main brand */
+  --color-brand-primary-600: #2563eb; /* blue-600 */
+  /* ... etc */
+
+  /* Replace secondary values with green */
+  --color-brand-secondary-300: #86efac; /* green-300 */
+  --color-brand-secondary-400: #4ade80; /* green-400 */
+  --color-brand-secondary-500: #22c55e; /* green-500 */
+  /* ... etc */
 }
 ```
 
@@ -112,8 +111,8 @@ Additional accent colors for variety and visual interest.
 
 To change the entire site's color scheme:
 
-1. Open `tailwind.config.ts`
-2. Modify the color values in the `brand` object
+1. Open `src/app/globals.css`
+2. Modify the `--color-brand-*` values in the `@theme` block
 3. The changes will automatically apply site-wide
 
 ### Example: Changing to a Blue/Green Theme

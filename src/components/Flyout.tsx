@@ -30,9 +30,9 @@ const Slideout: React.FC = () => {
         }}
         className={`fixed top-0 transform ${
           isOpen
-            ? "lg:translate-x-[60rem] bg-gray-800 hidden lg:block"
+            ? "lg:translate-x-240 bg-gray-800 hidden lg:block"
             : "translate-x-0 bg-brand-primary-800"
-        } z-50  text-white p-2 focus:outline-none transition-transform duration-300 rounded-r-lg`}
+        } z-50  text-white p-2 focus:outline-hidden transition-transform duration-300 rounded-r-lg`}
       >
         {isOpen ? (
           <CloseIcon />
@@ -49,7 +49,7 @@ const Slideout: React.FC = () => {
       </button>
 
       <div
-        className={`fixed top-0 left-0 rounded-br-lg bg-gray-800 text-white w-screen lg:w-[60rem] transform ${
+        className={`fixed top-0 left-0 rounded-br-lg bg-gray-800 text-white w-screen lg:w-240 transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 shadow-xl z-40`}
       >

@@ -7,7 +7,7 @@ import { MailtoLink } from "./MailtoLink";
 
 export const Header = () => {
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-brand-secondary-900 to-slate-900 overflow-hidden bg-animated">
+    <div className="relative min-h-screen bg-linear-to-br from-slate-900 via-brand-secondary-900 to-slate-900 overflow-hidden bg-animated">
       {/* Animated background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-72 h-72 bg-brand-primary-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -33,7 +33,7 @@ export const Header = () => {
               {/* Voice wave animation */}
               <VoiceWave className="mb-8" justify="start" />
 
-              <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-primary-400 via-brand-secondary-400 to-brand-accent-emerald-400 sm:text-6xl md:text-7xl lg:text-8xl leading-tight pb-2">
+              <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-linear-to-r from-brand-primary-400 via-brand-secondary-400 to-brand-accent-emerald-400 sm:text-6xl md:text-7xl lg:text-8xl leading-tight pb-2">
                 Fabian Krüger
               </h1>
 
@@ -51,7 +51,7 @@ export const Header = () => {
               <div className="mt-10">
                 <a
                   href="#hörbuch"
-                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-brand-primary-500 to-brand-secondary-500 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl hover:shadow-brand-primary-500/25 transform hover:-translate-y-1 transition-all duration-300 glow-primary"
+                  className="inline-flex items-center px-8 py-4 bg-linear-to-r from-brand-primary-500 to-brand-secondary-500 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl hover:shadow-brand-primary-500/25 transform hover:-translate-y-1 transition-all duration-300 glow-primary"
                 >
                   <svg
                     className="w-5 h-5 mr-2"
@@ -82,7 +82,7 @@ export const Header = () => {
             priority
           />
           {/* Overlay gradient */}
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-slate-900/30 to-slate-900/60 lg:via-transparent lg:to-slate-900/80"></div>
+          <div className="absolute inset-0 bg-linear-to-l from-transparent via-slate-900/30 to-slate-900/60 lg:via-transparent lg:to-slate-900/80"></div>
         </div>
       </div>
     </div>

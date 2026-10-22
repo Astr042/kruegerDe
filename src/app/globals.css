@@ -1,6 +1,60 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --color-brand-primary-50: #f0fdf4;
+  --color-brand-primary-100: #dcfce7;
+  --color-brand-primary-200: #bbf7d0;
+  --color-brand-primary-300: #86efac;
+  --color-brand-primary-400: #4ade80;
+  --color-brand-primary-500: #16a34a;
+  --color-brand-primary-600: #15803d;
+  --color-brand-primary-700: #166534;
+  --color-brand-primary-800: #14532d;
+  --color-brand-primary-900: #14532d;
+  --color-brand-primary-950: #052e16;
+
+  --color-brand-secondary-50: #f0fdf9;
+  --color-brand-secondary-100: #ccfbf1;
+  --color-brand-secondary-200: #99f6e4;
+  --color-brand-secondary-300: #5eead4;
+  --color-brand-secondary-400: #2dd4bf;
+  --color-brand-secondary-500: #14b8a6;
+  --color-brand-secondary-600: #0d9488;
+  --color-brand-secondary-700: #0f766e;
+  --color-brand-secondary-800: #115e59;
+  --color-brand-secondary-900: #134e4a;
+  --color-brand-secondary-950: #042f2e;
+
+  --color-brand-accent-emerald-300: #6ee7b7;
+  --color-brand-accent-emerald-400: #34d399;
+  --color-brand-accent-emerald-500: #10b981;
+
+  --color-brand-accent-teal-300: #5eead4;
+  --color-brand-accent-teal-400: #2dd4bf;
+  --color-brand-accent-teal-500: #14b8a6;
+
+  --color-brand-accent-lime-300: #bef264;
+  --color-brand-accent-lime-400: #a3e635;
+  --color-brand-accent-lime-500: #84cc16;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 /* Local font declarations */
 @font-face {
