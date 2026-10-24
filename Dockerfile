@@ -18,6 +18,10 @@ RUN npm run build
 
 # Laufzeit-Image: nur der Standalone-Build, ohne Quellcode und devDependencies
 FROM base AS runner
+
+# CVE-2026-111497 (Node2Shell): Build abbrechen, falls der Brotli-Decoder dieser
+# Node-Version verwundbar ist (behoben in 22.23.4, 24.22.1, 26.12.1).
+RUN node -e "const [M,m,p]=process.versions.node.split('.').map(Number),f={22:[23,4],24:[22,1],26:[12,1]}[M];if(M<=26&&(!f||m<f[0]||m==f[0]&&p<f[1])){console.error('Node '+process.version+' is vulnerable to CVE-2026-111497');process.exit(1)}"
 WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=3000
