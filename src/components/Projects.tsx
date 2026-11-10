@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Image, { StaticImageData } from "next/image";
+import { Gallery, GalleryImage } from "./Gallery";
 
 import buch from "../assets/buch.png";
 import holmesLippe from "../assets/projects/holmes-lippe.jpg";
@@ -12,6 +13,12 @@ import phantomsee from "../assets/projects/phantomsee.jpg";
 import werther from "../assets/projects/werther.jpg";
 import superpapagei from "../assets/projects/superpapagei.jpg";
 import ryuma from "../assets/projects/ryuma.jpg";
+import spleen3325 from "../assets/projects/der-spleen/IMG_3325.jpg";
+import spleen3114 from "../assets/projects/der-spleen/IMG_3114.jpg";
+import spleen3139 from "../assets/projects/der-spleen/IMG_3139.jpg";
+import spleen3144 from "../assets/projects/der-spleen/IMG_3144.jpg";
+import spleen3312 from "../assets/projects/der-spleen/IMG_3312.jpg";
+import spleen3404 from "../assets/projects/der-spleen/IMG_3404.jpg";
 
 type Project = {
   title: string;
@@ -25,9 +32,50 @@ type Project = {
   credit?: string;
   link?: { href: string; label: string };
   sampleHref?: string;
+  gallery?: GalleryImage[];
 };
 
 const projects: Project[] = [
+  {
+    title: "Der Spleen",
+    series: "Komödie nach Friedrich Wilhelm Gotter",
+    date: "2026-10-30",
+    category: "Theater",
+    description:
+      "Ein Mann will sterben, seine Frau ihn retten – und alle anderen machen es nur schlimmer. Das Statt Theater Wetzlar brachte die Wirtshaus-Posse des Wetzlarer Goethe-Zeitgenossen vom 30.10. bis 07.11.2026 auf die Bühne.",
+    image: spleen3325,
+    credit: "© E. Wohlert",
+    link: {
+      href: "https://www.wetzlar.de/leben-in-wetzlar/veranstaltungen/index.php#/veranstaltungen/RPT/8a50c043-84f5-440c-b582-be416be6668d/statttheater-wetzlar---der-spleen-",
+      label: "Zur Veranstaltung",
+    },
+    gallery: [
+      {
+        src: spleen3325,
+        alt: "Szene auf der Bühne: ein Mann am Boden hebt abwehrend die Hand, ein Herr mit Perücke richtet eine Pistole auf ihn",
+      },
+      {
+        src: spleen3114,
+        alt: "Ein bärtiger Mann im Leinenhemd spricht mit ausgestrecktem Arm zum Publikum, vor einer Steinwand mit Zetteln",
+      },
+      {
+        src: spleen3139,
+        alt: "Eine Schankmagd mit Haube und ein bärtiger Mann im braunen Rock lachen auf der Bühne",
+      },
+      {
+        src: spleen3144,
+        alt: "Bärtiger Mann im braunen Rock lacht und hält eine Karotte in der Hand",
+      },
+      {
+        src: spleen3312,
+        alt: "Ein Mann mit Schriftrolle deklamiert, im Hintergrund sitzt ein Herr mit Perücke im Sessel",
+      },
+      {
+        src: spleen3404,
+        alt: "Eine Frau in schwarzem Kleid und Kopftuch, hinter ihr ein bärtiger Mann, im Lichtkegel vor einer Steinwand",
+      },
+    ],
+  },
   {
     title: "Der Mann mit der entstellten Lippe",
     series: "Die Holmes-Akten · Folge 2",
@@ -92,7 +140,8 @@ const projects: Project[] = [
     series: "5 Geschwister Kids · Folge 1",
     date: "2026-02-20",
     category: "Kinderhörspiel",
-    description: "Die erste Folge des Kinder-Ablegers der Hörspielreihe 5 Geschwister.",
+    description:
+      "Die erste Folge des Kinder-Ablegers der Hörspielreihe 5 Geschwister.",
     image: fuenfGeschwisterKids01,
     credit: "© 5 Geschwister",
     link: {
@@ -174,7 +223,8 @@ const projects: Project[] = [
     series: "Ryuma Esports · Trailer",
     date: "2023-06-09",
     category: "Trailer",
-    description: "Sprecher für den Vorstellungs-Trailer des Esports-Teams Ryuma.",
+    description:
+      "Sprecher für den Vorstellungs-Trailer des Esports-Teams Ryuma.",
     image: ryuma,
     imageFit: "contain",
     credit: "© Ryuma Esports",
@@ -184,19 +234,6 @@ const projects: Project[] = [
     },
   },
 ];
-
-const upcoming = {
-  title: "Der Spleen",
-  series: "Komödie nach Friedrich Wilhelm Gotter",
-  dateLabel: "30.10. – 07.11.2026",
-  category: "Theater",
-  description:
-    "Ein Mann will sterben, seine Frau ihn retten – und alle anderen machen es nur schlimmer. Das Statt Theater Wetzlar bringt die Wirtshaus-Posse des Wetzlarer Goethe-Zeitgenossen auf die Bühne.",
-  link: {
-    href: "https://www.wetzlar.de/leben-in-wetzlar/veranstaltungen/index.php#/veranstaltungen/RPT/8a50c043-84f5-440c-b582-be416be6668d/statttheater-wetzlar---der-spleen-",
-    label: "Zur Veranstaltung",
-  },
-};
 
 const months = [
   "Januar",
@@ -232,72 +269,108 @@ const ArrowIcon = () => (
   </svg>
 );
 
-const ProjectCard = ({ project }: { project: Project }) => (
-  <article className="group flex flex-col bg-linear-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl border border-slate-700/50 hover:border-brand-primary-500/30 transition-all duration-500 hover:shadow-brand-primary-500/10">
-    {project.image && (
-      <div className="relative aspect-square bg-slate-950 overflow-hidden">
-        <Image
-          src={project.image}
-          alt={project.series ? `${project.series}: ${project.title}` : project.title}
-          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className={`w-full h-full ${
-            project.imageFit === "contain" ? "object-contain" : "object-cover"
-          }`}
-        />
-        <div className="absolute top-4 left-4 bg-linear-to-r from-brand-primary-500 to-brand-secondary-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
-          {project.category}
+const ProjectCard = ({ project }: { project: Project }) => {
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const alt = project.series
+    ? `${project.series}: ${project.title}`
+    : project.title;
+
+  return (
+    <article className="group flex flex-col bg-linear-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl border border-slate-700/50 hover:border-brand-primary-500/30 transition-all duration-500 hover:shadow-brand-primary-500/10">
+      {project.image && (
+        <div className="relative aspect-square bg-slate-950 overflow-hidden">
+          <Image
+            src={project.image}
+            alt={alt}
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            className={`w-full h-full ${
+              project.imageFit === "contain" ? "object-contain" : "object-cover"
+            }`}
+          />
+          {project.gallery && (
+            <button
+              onClick={() => setGalleryOpen(true)}
+              aria-label={`Galerie öffnen: ${project.title}`}
+              className="absolute inset-0 flex items-end justify-end p-4 bg-linear-to-t from-slate-950/60 via-transparent to-transparent opacity-90 hover:opacity-100 transition-opacity cursor-zoom-in"
+            >
+              <span className="bg-slate-900/80 text-slate-200 px-3 py-1 rounded-full text-sm font-semibold">
+                {project.gallery.length} Fotos
+              </span>
+            </button>
+          )}
+          <div className="absolute top-4 left-4 bg-linear-to-r from-brand-primary-500 to-brand-secondary-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+            {project.category}
+          </div>
+        </div>
+      )}
+
+      <div className="flex flex-col flex-1 p-6">
+        {project.credit && (
+          <p className="text-xs text-slate-500 -mt-3 mb-3">
+            Bild: {project.credit}
+          </p>
+        )}
+        <p className="text-sm text-brand-primary-400 font-medium mb-2">
+          {formatMonth(project.date)}
+        </p>
+        {project.series && (
+          <p className="text-sm text-slate-400 mb-1">{project.series}</p>
+        )}
+        <h4 className="text-2xl font-bold text-slate-200 mb-3 group-hover:text-brand-primary-400 transition-colors duration-300">
+          {project.title}
+        </h4>
+        {project.role && (
+          <p className="text-slate-300 mb-3">
+            Rolle: <span className="font-semibold">{project.role}</span>
+          </p>
+        )}
+        <p className="text-slate-400 leading-relaxed mb-6">
+          {project.description}
+        </p>
+
+        <div className="mt-auto flex flex-wrap items-center gap-3">
+          {project.link && (
+            <a
+              href={project.link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-4 py-2 bg-linear-to-r from-brand-primary-500 to-brand-primary-600 hover:from-brand-primary-600 hover:to-brand-primary-700 text-white text-sm font-semibold rounded-xl shadow-lg transition-all duration-300 group/link"
+            >
+              {project.link.label}
+              <ArrowIcon />
+            </a>
+          )}
+          {project.sampleHref && (
+            <a
+              href={project.sampleHref}
+              className="inline-flex items-center px-4 py-2 border border-brand-accent-emerald-500/50 text-brand-accent-emerald-400 hover:bg-brand-accent-emerald-500/10 text-sm font-semibold rounded-xl transition-all duration-300"
+            >
+              Hörprobe
+            </a>
+          )}
+          {project.gallery && (
+            <button
+              onClick={() => setGalleryOpen(true)}
+              className="inline-flex items-center px-4 py-2 border border-brand-accent-emerald-500/50 text-brand-accent-emerald-400 hover:bg-brand-accent-emerald-500/10 text-sm font-semibold rounded-xl transition-all duration-300"
+            >
+              Galerie
+            </button>
+          )}
         </div>
       </div>
-    )}
 
-    <div className="flex flex-col flex-1 p-6">
-      {project.credit && (
-        <p className="text-xs text-slate-500 -mt-3 mb-3">
-          Bild: {project.credit}
-        </p>
+      {project.gallery && (
+        <Gallery
+          title={project.title}
+          images={project.gallery}
+        credit={project.credit}
+          open={galleryOpen}
+          onClose={() => setGalleryOpen(false)}
+        />
       )}
-      <p className="text-sm text-brand-primary-400 font-medium mb-2">
-        {formatMonth(project.date)}
-      </p>
-      {project.series && (
-        <p className="text-sm text-slate-400 mb-1">{project.series}</p>
-      )}
-      <h4 className="text-2xl font-bold text-slate-200 mb-3 group-hover:text-brand-primary-400 transition-colors duration-300">
-        {project.title}
-      </h4>
-      {project.role && (
-        <p className="text-slate-300 mb-3">
-          Rolle: <span className="font-semibold">{project.role}</span>
-        </p>
-      )}
-      <p className="text-slate-400 leading-relaxed mb-6">
-        {project.description}
-      </p>
-
-      <div className="mt-auto flex flex-wrap items-center gap-3">
-        {project.link && (
-          <a
-            href={project.link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-4 py-2 bg-linear-to-r from-brand-primary-500 to-brand-primary-600 hover:from-brand-primary-600 hover:to-brand-primary-700 text-white text-sm font-semibold rounded-xl shadow-lg transition-all duration-300 group/link"
-          >
-            {project.link.label}
-            <ArrowIcon />
-          </a>
-        )}
-        {project.sampleHref && (
-          <a
-            href={project.sampleHref}
-            className="inline-flex items-center px-4 py-2 border border-brand-accent-emerald-500/50 text-brand-accent-emerald-400 hover:bg-brand-accent-emerald-500/10 text-sm font-semibold rounded-xl transition-all duration-300"
-          >
-            Hörprobe
-          </a>
-        )}
-      </div>
-    </div>
-  </article>
-);
+    </article>
+  );
+};
 
 export const Projects = () => {
   return (
@@ -321,44 +394,6 @@ export const Projects = () => {
             Von Hörspielreihen über Live-Bühnen bis zum Audio-Walk – eine
             Auswahl der Produktionen, an denen ich mitwirken durfte
           </p>
-        </div>
-
-        {/* Upcoming */}
-        <div className="mb-24">
-          <h3 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-linear-to-r from-brand-accent-emerald-400 to-brand-accent-teal-400 mb-8 px-4">
-            Demnächst
-          </h3>
-
-          <div className="bg-linear-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-slate-700/50 hover:border-brand-primary-500/30 transition-all duration-500">
-            <div className="flex flex-col lg:flex-row lg:items-center gap-8">
-              <div className="shrink-0 text-center lg:text-left">
-                <div className="inline-block bg-linear-to-r from-brand-primary-500 to-brand-secondary-500 text-white px-4 py-2 rounded-2xl text-sm font-semibold shadow-lg mb-3">
-                  {upcoming.category}
-                </div>
-                <p className="text-2xl font-bold text-slate-200">
-                  {upcoming.dateLabel}
-                </p>
-              </div>
-              <div className="flex-1 text-center lg:text-left">
-                <h4 className="text-3xl font-bold text-slate-200 mb-1">
-                  {upcoming.title}
-                </h4>
-                <p className="text-slate-400 mb-4">{upcoming.series}</p>
-                <p className="text-slate-300 leading-relaxed mb-6">
-                  {upcoming.description}
-                </p>
-                <a
-                  href={upcoming.link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 bg-linear-to-r from-brand-primary-500 to-brand-primary-600 hover:from-brand-primary-600 hover:to-brand-primary-700 text-white font-semibold rounded-2xl shadow-xl transition-all duration-300 group/link"
-                >
-                  {upcoming.link.label}
-                  <ArrowIcon />
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Past projects */}
