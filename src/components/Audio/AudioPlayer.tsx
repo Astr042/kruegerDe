@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {
   forwardRef,
   useEffect,
@@ -9,7 +8,8 @@ import { PlayPauseButton } from "../PlayPauseButton";
 
 interface IAudioPlayer {
   audioSrc: string;
-  rounded?: boolean;
+  title?: string;
+  credit?: string;
 }
 
 export type AudioPlayerRef = {
@@ -25,12 +25,11 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
     },
   }));
 
-  const { audioSrc, rounded } = props;
+  const { audioSrc, title, credit } = props;
   const [audio, setAudio] = useState<HTMLAudioElement>();
   const [playing, setPlaying] = useState<boolean>(false);
   const [duration, setDuration] = useState<number>(0);
   const [currentTime, setCurrentTime] = useState<number>(0);
-  const [volume, setVolume] = useState<number>(100);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -100,14 +99,6 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
     setCurrentTime(newTime);
   };
 
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newVolume = parseInt(e.target.value);
-    setVolume(newVolume);
-    if (audio) {
-      audio.volume = newVolume / 100;
-    }
-  };
-
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
@@ -117,150 +108,61 @@ const AudioPlayer = forwardRef<AudioPlayerRef, IAudioPlayer>((props, ref) => {
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div
-      className={`group bg-linear-to-br from-slate-800 to-slate-900 border border-slate-700/50 backdrop-blur-lg p-6 transition-all duration-300 hover:shadow-xl hover:shadow-brand-primary-500/10 hover:border-brand-primary-500/30 ${
-        rounded ? "rounded-2xl" : ""
-      }`}
-    >
-      {/* Waveform visualization background */}
-      {/* <div className="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
-        <div className="flex items-center justify-center h-full space-x-1">
-          {Array.from({ length: 40 }).map((_, i) => (
-            <div
-              key={i}
-              className="w-1 bg-linear-to-t from-brand-primary-500 to-brand-secondary-500 rounded-full transition-all duration-1000"
-              style={{
-                height: `${playing ? Math.random() * 60 + 60 : 20}%`,
-                animationDelay: `${i * 0.1}s`,
-              }}
-            />
-          ))}
+    <div className="flex items-center gap-4 py-5">
+      <PlayPauseButton
+        isPlaying={playing}
+        isLoading={isLoading}
+        onPlayPause={handlePlayPause}
+        size="sm"
+      />
+
+      <div className="min-w-0 flex-1">
+        <div className="flex items-baseline justify-between gap-4">
+          {title && <p className="text-fg leading-snug">{title}</p>}
+          <span className="shrink-0 text-xs text-subtle tabular-nums">
+            {playing || currentTime > 0
+              ? `${formatTime(currentTime)} / ${formatTime(duration)}`
+              : formatTime(duration)}
+          </span>
         </div>
-      </div> */}
-      <div className="relative z-10">
-        {/* Progress Bar */}
-        <div className="mb-6">
-          <div
-            className="w-full h-3 bg-slate-700 rounded-full cursor-pointer group/progress"
-            onClick={handleSeek}
-          >
+        {credit && <p className="text-xs text-subtle mt-0.5">{credit}</p>}
+
+        {/* Progress – taller hit area around a hairline bar */}
+        <div
+          className="group/progress py-2 -my-1 mt-2 cursor-pointer"
+          onClick={handleSeek}
+          role="presentation"
+        >
+          <div className="h-[3px] bg-line rounded-full overflow-hidden">
             <div
-              className="h-full bg-linear-to-r from-brand-primary-500 to-brand-secondary-500 rounded-full relative transition-all duration-150 group-hover/progress:shadow-lg group-hover/progress:shadow-brand-primary-500/50"
+              className="h-full bg-brand-primary-400 transition-[width] duration-100"
               style={{ width: `${progress}%` }}
-            >
-              <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg opacity-0 group-hover/progress:opacity-100 transition-opacity duration-200"></div>
-            </div>
-          </div>
-
-          {/* Time Display */}
-          <div className="flex justify-between text-sm text-slate-400 mt-2">
-            <span>{formatTime(currentTime)}</span>
-            <span>{formatTime(duration)}</span>
-          </div>
-        </div>
-
-        {/* Controls */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2 sm:space-x-4">
-            {/* Skip Backward */}
-            <button
-              onClick={() => {
-                if (audio) {
-                  audio.currentTime = Math.max(0, audio.currentTime - 10);
-                }
-              }}
-              className="p-1 sm:p-2 text-slate-400 hover:text-brand-primary-400 transition-colors duration-200 hover:scale-110 transform"
-            >
-              <svg
-                className="w-4 h-4 sm:w-5 sm:h-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
-
-            {/* Play/Pause Button */}
-            <PlayPauseButton
-              isPlaying={playing}
-              isLoading={isLoading}
-              onPlayPause={handlePlayPause}
-              size="md"
-            />
-
-            {/* Skip Forward */}
-            <button
-              onClick={() => {
-                if (audio) {
-                  audio.currentTime = Math.min(
-                    duration,
-                    audio.currentTime + 10
-                  );
-                }
-              }}
-              className="p-1 sm:p-2 text-slate-400 hover:text-brand-primary-400 transition-colors duration-200 hover:scale-110 transform"
-            >
-              <svg
-                className="w-4 h-4 sm:w-5 sm:h-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M4.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414zm6 0a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L14.586 10l-4.293-4.293a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
-          </div>
-
-          {/* Volume Control */}
-          <div className="flex items-center space-x-1 sm:space-x-3">
-            <svg
-              className="w-4 h-4 sm:w-5 sm:h-5 text-slate-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.617.787L4.768 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.768l3.615-3.787a1 1 0 011.617.787zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.972 7.972 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={volume}
-              onChange={handleVolumeChange}
-              className="w-12 sm:w-20 h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer slider"
             />
           </div>
-
-          {/* Download Button */}
-          <a
-            href={audioSrc}
-            download
-            className="p-1 sm:p-2 text-slate-400 hover:text-brand-primary-400 transition-colors duration-200 hover:scale-110 transform"
-          >
-            <svg
-              className="w-4 h-4 sm:w-5 sm:h-5"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </a>
         </div>
       </div>
+
+      <a
+        href={audioSrc}
+        download
+        aria-label={title ? `${title} herunterladen` : "Herunterladen"}
+        className="shrink-0 p-2 -mr-2 text-subtle hover:text-fg transition-colors duration-200"
+      >
+        <svg
+          className="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={1.75}
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M4.5 19.5h15"
+          />
+        </svg>
+      </a>
     </div>
   );
 });

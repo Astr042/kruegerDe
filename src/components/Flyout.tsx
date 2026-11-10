@@ -71,7 +71,6 @@ const Slideout: React.FC = () => {
               </p>
               <div className="lg py-2">
                 <AudioPlayer
-                  rounded
                   key={""}
                   audioSrc={jugger}
                   ref={playerRef}

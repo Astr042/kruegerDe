@@ -19,7 +19,7 @@ import sandmann from "../assets/sandmann.mp3";
 import fragezeichen from "../assets/3Fragezeichen.mp3";
 import werther from "../assets/wer-schoss-auf-werther.mp3";
 import AudioPlayer from "./Audio/AudioPlayer";
-import { VoiceWave } from "./VoiceWave";
+import { SectionHeading } from "./SectionHeading";
 
 const posts = [
   {
@@ -47,64 +47,29 @@ const posts = [
 
 const projects = [
   {
-    title:
-      "Wer schoss auf Werther? - Ein True-Crime Audio-Walk (©Kulturamt der Stadt Wetzlar)",
-    description: ``,
-    videoSrc: undefined,
+    title: "Wer schoss auf Werther?",
+    credit: "True-Crime-Audio-Walk · © Kulturamt der Stadt Wetzlar",
     audioSrc: werther,
   },
   {
-    title:
-      "Die drei Fragezeichen und der Superpapagei Mitmachhörspiel (©Lauscherlounge)",
-    description: ``,
-    videoSrc: undefined,
+    title: "Die drei ??? und der Superpapagei",
+    credit: "Mitmachhörspiel · © Lauscherlounge",
     audioSrc: fragezeichen,
   },
-  {
-    title: "Herrenmode",
-    description: ``,
-    videoSrc: undefined,
-    audioSrc: herrenmode,
-  },
-  {
-    title: "Rafael",
-    description: ``,
-    videoSrc: undefined,
-    audioSrc: rafael,
-  },
-  {
-    title: "Helikopter",
-    description: ``,
-    videoSrc: undefined,
-    audioSrc: helikopter,
-  },
-  {
-    title: "Der Sandmann",
-    description: ``,
-    videoSrc: undefined,
-    audioSrc: sandmann,
-  },
-  {
-    title: "Der kleine Junkie Nimmerplatt",
-    description: ``,
-    videoSrc: undefined,
-    audioSrc: nimmerPlatt,
-  },
+  { title: "Herrenmode", audioSrc: herrenmode },
+  { title: "Rafael", audioSrc: rafael },
+  { title: "Helikopter", audioSrc: helikopter },
+  { title: "Der Sandmann", audioSrc: sandmann },
+  { title: "Der kleine Junkie Nimmerplatt", audioSrc: nimmerPlatt },
 ];
 
 export const Downloads = () => {
   return (
-    <div
+    <section
       id="hörbuch"
-      className="relative min-h-screen bg-linear-to-br from-slate-900 via-brand-secondary-900/20 to-slate-900 pt-20 pb-32 px-4 sm:px-6 lg:pt-32 lg:pb-40 lg:px-8 bg-animated"
+      className="relative bg-band border-y border-line pt-24 pb-28 px-4 sm:px-6 lg:pt-32 lg:pb-36 lg:px-8"
     >
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-40 -left-20 w-80 h-80 bg-brand-primary-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 -right-20 w-96 h-96 bg-brand-accent-emerald-500/5 rounded-full blur-3xl"></div>
-      </div>
-
-      <div className="relative w-full max-w-6xl mx-auto">
+      <div className="relative w-full max-w-7xl mx-auto">
         {/* Audiobook Section – hidden for now, the Projekte section replaces it
         <div className="mb-24">
           <div className="bg-linear-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-slate-700/50 hover:border-brand-primary-500/30 transition-all duration-500 group">
@@ -189,94 +154,70 @@ export const Downloads = () => {
         </div>
         */}
 
-        {/* Section Header */}
-        <div id="hörproben" className="text-center mb-16">
-          <h2 className="text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-linear-to-r from-brand-primary-400 via-brand-secondary-400 to-brand-accent-emerald-400 mb-6">
-            Hörproben
-          </h2>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Hier ein paar Proben meiner bisherigen Arbeiten - von
-            Synchronisation bis hin zu Hörspielen
-          </p>
-
-          <div className="flex justify-center mt-8">
-            <VoiceWave />
-          </div>
+        <div id="hörproben" className="scroll-mt-8">
+          <SectionHeading eyebrow="Anhören" title="Hörproben">
+            Ein paar Proben meiner bisherigen Arbeiten – von Synchronisation bis
+            hin zu Hörspielen.
+          </SectionHeading>
         </div>
 
-        {/* Portfolio Grid */}
-        <div className="grid gap-8 lg:grid-cols-2">
-          {/* Video/Synchronisation Section */}
-          <div className="space-y-8 min-w-0">
-            <h3 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-linear-to-r from-brand-accent-emerald-400 to-brand-accent-teal-400 mb-8 px-4">
-              Synchronisation & Video
-            </h3>
-            <div className="space-y-8">
+        <div className="space-y-20">
+          {/* Synchronisation & Video */}
+          <div className="min-w-0">
+            <h3 className="eyebrow text-muted mb-6">Synchronisation & Video</h3>
+            <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
               {posts.map(
                 (post) =>
                   post.videoSrc && (
-                    <div key={post.title} className="w-full min-w-0">
+                    <figure key={post.title} className="w-full min-w-0">
                       <VideoPlayer
                         videoSrc={post.videoSrc}
                         poster={post.poster}
                         title={post.title}
-                        rounded={true}
+                        rounded
                       />
-                    </div>
+                      <figcaption className="mt-3 font-display text-xl text-fg">
+                        {post.title}
+                      </figcaption>
+                    </figure>
                   )
               )}
             </div>
           </div>
 
-          {/* Audio/Projects Section */}
-          <div className="space-y-8 min-w-0">
-            <h3 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-linear-to-r from-brand-primary-400 to-brand-secondary-400 mb-8 px-4">
-              Hörspiele & Projekte
-            </h3>
-            {projects.map((post, index) => (
-              <div
-                key={post.title}
-                className="group bg-linear-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl border border-slate-700/50 hover:border-brand-primary-500/30 transition-all duration-500 hover:shadow-brand-primary-500/10"
-                style={{ animationDelay: `${(index + posts.length) * 0.1}s` }}
-              >
-                {post.audioSrc && (
-                  <div className="p-6 pb-0">
-                    <div className="relative">
+          {/* Hörspiele & Projekte */}
+          <div className="min-w-0">
+            <h3 className="eyebrow text-muted mb-6">Hörspiele & Projekte</h3>
+            <div className="grid lg:grid-cols-2 lg:gap-x-12 rounded-lg bg-surface-raised border border-line px-5 sm:px-6 py-1">
+              {[
+                projects.slice(0, Math.ceil(projects.length / 2)),
+                projects.slice(Math.ceil(projects.length / 2)),
+              ].map((column, i) => (
+                <ul
+                  key={i}
+                  className={`divide-y divide-line ${
+                    i > 0 ? "border-t border-line lg:border-t-0" : ""
+                  }`}
+                >
+                  {column.map((post) => (
+                    <li key={post.title}>
                       <AudioPlayer
-                        key={post.title}
                         audioSrc={post.audioSrc}
-                        rounded
+                        title={post.title}
+                        credit={post.credit}
                       />
-                      <div className="absolute -top-4 -right-4 bg-linear-to-r from-brand-accent-emerald-500 to-brand-accent-teal-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                        Audio
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                <div className="p-8 pt-6">
-                  <h4 className="text-2xl font-bold text-slate-200 mb-4 group-hover:text-brand-primary-400 transition-colors duration-300">
-                    {post.title}
-                  </h4>
-                  {post.description && (
-                    <p className="text-slate-400 leading-relaxed">
-                      {post.description}
-                    </p>
-                  )}
-                </div>
-              </div>
-            ))}
+                    </li>
+                  ))}
+                </ul>
+              ))}
+            </div>
+            <p className="mt-8 text-sm text-subtle leading-relaxed">
+              Probleme beim Abspielen? Dann hilft es meist, den Adblocker für
+              diese Seite zu deaktivieren.
+            </p>
           </div>
         </div>
-
-        {/* Footer Note */}
-        <div className="text-center mt-16">
-          <p className="text-slate-400 text-sm bg-slate-800/50 rounded-2xl p-4 backdrop-blur-sm border border-slate-700/50">
-            💡 <strong>Hinweis:</strong> Sollten Sie Probleme mit dem Abspielen
-            der Dateien haben, deaktivieren Sie bitte Ihren Adblocker.
-          </p>
-        </div>
       </div>
-    </div>
+    </section>
   );
 };

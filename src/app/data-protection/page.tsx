@@ -10,26 +10,21 @@ const DataProtectionPage = () => {
       <Navbar />
 
       {/* Main Content */}
-      <main className="relative min-h-screen bg-linear-to-br from-slate-900 via-brand-secondary-900/20 to-slate-900 pt-20 pb-16 px-4 sm:px-6 lg:pt-32 lg:pb-24 lg:px-8">
-        {/* Background decoration */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-40 -left-20 w-80 h-80 bg-brand-primary-500/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 -right-20 w-96 h-96 bg-brand-accent-emerald-500/5 rounded-full blur-3xl"></div>
-        </div>
+      <main className="relative min-h-screen bg-canvas pt-20 pb-24 px-4 sm:px-6 lg:pt-28 lg:pb-32 lg:px-8">
 
-        <div className="relative max-w-4xl mx-auto">
+        <div className="relative max-w-3xl mx-auto">
           {/* Content Container */}
-          <div className="bg-linear-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl rounded-3xl p-8 lg:p-12 shadow-2xl border border-slate-700/50">
+          <div>
             {/* Header */}
-            <h1 className="text-4xl lg:text-5xl font-bold mb-8 text-transparent bg-clip-text bg-linear-to-r from-brand-primary-400 to-brand-secondary-400">
+            <h1 className="text-5xl lg:text-6xl mb-12 text-fg">
               Datenschutzerklärung
             </h1>
 
             {/* Content */}
-            <div className="space-y-8 text-slate-300">
+            <div className="space-y-10 text-muted">
               {/* Präambel */}
               <section id="m4158">
-                <h2 className="text-2xl font-semibold mb-4 text-brand-primary-400">
+                <h2 className="text-2xl mb-4 text-fg">
                   Präambel
                 </h2>
                 <p className="text-lg leading-relaxed mb-4">
@@ -47,14 +42,14 @@ const DataProtectionPage = () => {
 
               {/* Inhaltsübersicht */}
               <section>
-                <h2 className="text-2xl font-semibold mb-4 text-brand-primary-400">
+                <h2 className="text-2xl mb-4 text-fg">
                   Inhaltsübersicht
                 </h2>
                 <ul className="space-y-2 text-lg">
                   <li>
                     <a
                       href="#m4158"
-                      className="text-brand-secondary-400 hover:text-brand-secondary-300 transition-colors duration-300"
+                      className="text-brand-primary-400 hover:text-brand-primary-300 underline decoration-brand-primary-400/40 underline-offset-4 transition-colors duration-200 break-words"
                     >
                       Präambel
                     </a>
@@ -62,7 +57,7 @@ const DataProtectionPage = () => {
                   <li>
                     <a
                       href="#m3"
-                      className="text-brand-secondary-400 hover:text-brand-secondary-300 transition-colors duration-300"
+                      className="text-brand-primary-400 hover:text-brand-primary-300 underline decoration-brand-primary-400/40 underline-offset-4 transition-colors duration-200 break-words"
                     >
                       Verantwortlicher
                     </a>
@@ -70,7 +65,7 @@ const DataProtectionPage = () => {
                   <li>
                     <a
                       href="#mOverview"
-                      className="text-brand-secondary-400 hover:text-brand-secondary-300 transition-colors duration-300"
+                      className="text-brand-primary-400 hover:text-brand-primary-300 underline decoration-brand-primary-400/40 underline-offset-4 transition-colors duration-200 break-words"
                     >
                       Übersicht der Verarbeitungen
                     </a>
@@ -78,7 +73,7 @@ const DataProtectionPage = () => {
                   <li>
                     <a
                       href="#m2427"
-                      className="text-brand-secondary-400 hover:text-brand-secondary-300 transition-colors duration-300"
+                      className="text-brand-primary-400 hover:text-brand-primary-300 underline decoration-brand-primary-400/40 underline-offset-4 transition-colors duration-200 break-words"
                     >
                       Maßgebliche Rechtsgrundlagen
                     </a>
@@ -86,7 +81,7 @@ const DataProtectionPage = () => {
                   <li>
                     <a
                       href="#m27"
-                      className="text-brand-secondary-400 hover:text-brand-secondary-300 transition-colors duration-300"
+                      className="text-brand-primary-400 hover:text-brand-primary-300 underline decoration-brand-primary-400/40 underline-offset-4 transition-colors duration-200 break-words"
                     >
                       Sicherheitsmaßnahmen
                     </a>
@@ -94,7 +89,7 @@ const DataProtectionPage = () => {
                   <li>
                     <a
                       href="#m25"
-                      className="text-brand-secondary-400 hover:text-brand-secondary-300 transition-colors duration-300"
+                      className="text-brand-primary-400 hover:text-brand-primary-300 underline decoration-brand-primary-400/40 underline-offset-4 transition-colors duration-200 break-words"
                     >
                       Übermittlung von personenbezogenen Daten
                     </a>
@@ -102,7 +97,7 @@ const DataProtectionPage = () => {
                   <li>
                     <a
                       href="#m12"
-                      className="text-brand-secondary-400 hover:text-brand-secondary-300 transition-colors duration-300"
+                      className="text-brand-primary-400 hover:text-brand-primary-300 underline decoration-brand-primary-400/40 underline-offset-4 transition-colors duration-200 break-words"
                     >
                       Allgemeine Informationen zur Datenspeicherung und Löschung
                     </a>
@@ -110,7 +105,7 @@ const DataProtectionPage = () => {
                   <li>
                     <a
                       href="#m10"
-                      className="text-brand-secondary-400 hover:text-brand-secondary-300 transition-colors duration-300"
+                      className="text-brand-primary-400 hover:text-brand-primary-300 underline decoration-brand-primary-400/40 underline-offset-4 transition-colors duration-200 break-words"
                     >
                       Rechte der betroffenen Personen
                     </a>
@@ -118,7 +113,7 @@ const DataProtectionPage = () => {
                   <li>
                     <a
                       href="#m317"
-                      className="text-brand-secondary-400 hover:text-brand-secondary-300 transition-colors duration-300"
+                      className="text-brand-primary-400 hover:text-brand-primary-300 underline decoration-brand-primary-400/40 underline-offset-4 transition-colors duration-200 break-words"
                     >
                       Geschäftliche Leistungen
                     </a>
@@ -126,7 +121,7 @@ const DataProtectionPage = () => {
                   <li>
                     <a
                       href="#m225"
-                      className="text-brand-secondary-400 hover:text-brand-secondary-300 transition-colors duration-300"
+                      className="text-brand-primary-400 hover:text-brand-primary-300 underline decoration-brand-primary-400/40 underline-offset-4 transition-colors duration-200 break-words"
                     >
                       Bereitstellung des Onlineangebots und Webhosting
                     </a>
@@ -134,7 +129,7 @@ const DataProtectionPage = () => {
                   <li>
                     <a
                       href="#m182"
-                      className="text-brand-secondary-400 hover:text-brand-secondary-300 transition-colors duration-300"
+                      className="text-brand-primary-400 hover:text-brand-primary-300 underline decoration-brand-primary-400/40 underline-offset-4 transition-colors duration-200 break-words"
                     >
                       Kontakt- und Anfrageverwaltung
                     </a>
@@ -142,7 +137,7 @@ const DataProtectionPage = () => {
                   <li>
                     <a
                       href="#m15"
-                      className="text-brand-secondary-400 hover:text-brand-secondary-300 transition-colors duration-300"
+                      className="text-brand-primary-400 hover:text-brand-primary-300 underline decoration-brand-primary-400/40 underline-offset-4 transition-colors duration-200 break-words"
                     >
                       Änderung und Aktualisierung
                     </a>
@@ -150,7 +145,7 @@ const DataProtectionPage = () => {
                   <li>
                     <a
                       href="#m42"
-                      className="text-brand-secondary-400 hover:text-brand-secondary-300 transition-colors duration-300"
+                      className="text-brand-primary-400 hover:text-brand-primary-300 underline decoration-brand-primary-400/40 underline-offset-4 transition-colors duration-200 break-words"
                     >
                       Begriffsdefinitionen
                     </a>
@@ -160,7 +155,7 @@ const DataProtectionPage = () => {
 
               {/* Remaining sections with proper styling and full content */}
               <section id="m3">
-                <h2 className="text-2xl font-semibold mb-4 text-brand-primary-400">
+                <h2 className="text-2xl mb-4 text-fg">
                   Verantwortlicher
                 </h2>
                 <div className="text-lg leading-relaxed space-y-2">
@@ -175,7 +170,7 @@ const DataProtectionPage = () => {
                     E-Mail-Adresse:{" "}
                     <a
                       href="mailto:christian-hollatz@web.de"
-                      className="text-brand-secondary-400 hover:text-brand-secondary-300 transition-colors duration-300"
+                      className="text-brand-primary-400 hover:text-brand-primary-300 underline decoration-brand-primary-400/40 underline-offset-4 transition-colors duration-200 break-words"
                     >
                       christian-hollatz@web.de
                     </a>
@@ -187,7 +182,7 @@ const DataProtectionPage = () => {
 
               {/* Übersicht der Verarbeitungen */}
               <section id="mOverview">
-                <h2 className="text-2xl font-semibold mb-4 text-brand-primary-400">
+                <h2 className="text-2xl mb-4 text-fg">
                   Übersicht der Verarbeitungen
                 </h2>
                 <p className="text-lg leading-relaxed mb-6">
@@ -198,7 +193,7 @@ const DataProtectionPage = () => {
 
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-xl font-semibold mb-3 text-brand-accent-emerald-400">
+                    <h3 className="text-xl mb-3 text-fg">
                       Arten der verarbeiteten Daten
                     </h3>
                     <ul className="list-disc list-inside space-y-1 text-lg">
@@ -214,7 +209,7 @@ const DataProtectionPage = () => {
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-semibold mb-3 text-brand-accent-emerald-400">
+                    <h3 className="text-xl mb-3 text-fg">
                       Kategorien betroffener Personen
                     </h3>
                     <ul className="list-disc list-inside space-y-1 text-lg">
@@ -227,7 +222,7 @@ const DataProtectionPage = () => {
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-semibold mb-3 text-brand-accent-emerald-400">
+                    <h3 className="text-xl mb-3 text-fg">
                       Zwecke der Verarbeitung
                     </h3>
                     <ul className="list-disc list-inside space-y-1 text-lg">
@@ -255,7 +250,7 @@ const DataProtectionPage = () => {
 
               {/* Maßgebliche Rechtsgrundlagen */}
               <section id="m2427">
-                <h2 className="text-2xl font-semibold mb-4 text-brand-primary-400">
+                <h2 className="text-2xl mb-4 text-fg">
                   Maßgebliche Rechtsgrundlagen
                 </h2>
                 <div className="space-y-4 text-lg leading-relaxed">
@@ -351,7 +346,7 @@ const DataProtectionPage = () => {
 
               {/* Sicherheitsmaßnahmen */}
               <section id="m27">
-                <h2 className="text-2xl font-semibold mb-4 text-brand-primary-400">
+                <h2 className="text-2xl mb-4 text-fg">
                   Sicherheitsmaßnahmen
                 </h2>
                 <div className="space-y-4 text-lg leading-relaxed">
@@ -408,7 +403,7 @@ const DataProtectionPage = () => {
 
               {/* Übermittlung von personenbezogenen Daten */}
               <section id="m25">
-                <h2 className="text-2xl font-semibold mb-4 text-brand-primary-400">
+                <h2 className="text-2xl mb-4 text-fg">
                   Übermittlung von personenbezogenen Daten
                 </h2>
                 <p className="text-lg leading-relaxed">
@@ -428,7 +423,7 @@ const DataProtectionPage = () => {
 
               {/* Allgemeine Informationen zur Datenspeicherung und Löschung */}
               <section id="m12">
-                <h2 className="text-2xl font-semibold mb-4 text-brand-primary-400">
+                <h2 className="text-2xl mb-4 text-fg">
                   Allgemeine Informationen zur Datenspeicherung und Löschung
                 </h2>
                 <div className="space-y-4 text-lg leading-relaxed">
@@ -512,13 +507,13 @@ const DataProtectionPage = () => {
             </div>
 
             {/* Back to Home Button */}
-            <div className="mt-12 text-center">
+            <div className="mt-16 border-t border-line pt-8">
               <Link
                 href="/"
-                className="inline-flex items-center px-8 py-4 bg-linear-to-r from-brand-primary-500 to-brand-primary-600 hover:from-brand-primary-600 hover:to-brand-primary-700 text-white font-semibold rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-brand-primary-500/25 transform hover:-translate-y-1 transition-all duration-300 group"
+                className="group inline-flex items-center text-sm text-muted hover:text-fg transition-colors duration-200"
               >
                 <svg
-                  className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform duration-300"
+                  className="w-4 h-4 mr-2 group-hover:-translate-x-0.5 transition-transform duration-200"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >

@@ -5,9 +5,20 @@ interface PlayPauseButtonProps {
   isLoading: boolean;
   onPlayPause: () => void;
   size?: "sm" | "md" | "lg";
-  variant?: "gradient" | "solid";
   className?: string;
 }
+
+const sizeClasses = {
+  sm: "w-9 h-9",
+  md: "w-11 h-11",
+  lg: "w-16 h-16",
+};
+
+const iconSizeClasses = {
+  sm: "w-4 h-4",
+  md: "w-5 h-5",
+  lg: "w-7 h-7",
+};
 
 export const PlayPauseButton: React.FC<PlayPauseButtonProps> = ({
   isPlaying,
@@ -16,57 +27,36 @@ export const PlayPauseButton: React.FC<PlayPauseButtonProps> = ({
   size = "md",
   className = "",
 }) => {
-  const sizeClasses = {
-    sm: "p-1.5 sm:p-2",
-    md: "p-2 sm:p-3",
-    lg: "p-3 sm:p-4",
-  };
-
-  const iconSizeClasses = {
-    sm: "w-4 h-4 sm:w-5 sm:h-5",
-    md: "w-5 h-5 sm:w-6 sm:h-6",
-    lg: "w-6 h-6 sm:w-7 sm:h-7",
-  };
-
-  const spinnerSizeClasses = {
-    sm: "w-4 h-4 sm:w-5 sm:h-5",
-    md: "w-5 h-5 sm:w-6 sm:h-6",
-    lg: "w-6 h-6 sm:w-7 sm:h-7",
-  };
-
   return (
     <button
+      type="button"
       onClick={onPlayPause}
       disabled={isLoading}
-      className={`${sizeClasses[size]} bg-linear-to-r from-brand-primary-500 to-brand-secondary-500 text-white rounded-full shadow-lg hover:shadow-xl hover:shadow-brand-primary-500/25 transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
+      aria-label={isPlaying ? "Pause" : "Abspielen"}
+      className={`${sizeClasses[size]} shrink-0 inline-flex items-center justify-center rounded-full bg-brand-primary-400 text-canvas hover:bg-brand-primary-300 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
     >
       {isLoading ? (
-        <div
-          className={`${spinnerSizeClasses[size]} border-2 border-white border-t-transparent rounded-full animate-spin`}
-        ></div>
+        <span
+          className={`${iconSizeClasses[size]} border-2 border-canvas border-t-transparent rounded-full animate-spin`}
+        />
       ) : isPlaying ? (
         <svg
           className={iconSizeClasses[size]}
           fill="currentColor"
-          viewBox="0 0 20 20"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
         >
-          <path
-            fillRule="evenodd"
-            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"
-            clipRule="evenodd"
-          />
+          <rect x="6" y="5" width="4" height="14" rx="1" />
+          <rect x="14" y="5" width="4" height="14" rx="1" />
         </svg>
       ) : (
         <svg
           className={iconSizeClasses[size]}
           fill="currentColor"
-          viewBox="0 0 20 20"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
         >
-          <path
-            fillRule="evenodd"
-            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-            clipRule="evenodd"
-          />
+          <path d="M6.5 5.14v13.72a1 1 0 0 0 1.52.85l10.6-6.86a1 1 0 0 0 0-1.7L8.02 4.29A1 1 0 0 0 6.5 5.14Z" />
         </svg>
       )}
     </button>

@@ -68,17 +68,17 @@ export const Gallery = ({
 
   return (
     <Dialog open={open} onClose={onClose} className="relative z-50">
-      <div className="fixed inset-0 bg-slate-950/95 backdrop-blur-sm" />
+      <div className="fixed inset-0 bg-canvas/95" />
 
       <div className="fixed inset-0 flex flex-col">
         <DialogPanel className="flex flex-col h-full w-full">
           {/* Top bar */}
           <div className="flex items-center justify-between gap-4 px-4 py-3 sm:px-6">
             <div className="min-w-0">
-              <DialogTitle className="text-lg font-bold text-slate-200 truncate">
+              <DialogTitle className="font-display text-xl text-fg truncate">
                 {title}
               </DialogTitle>
-              <p className="text-sm text-slate-400">
+              <p className="text-sm text-muted tabular-nums">
                 {index + 1} / {images.length}
                 {credit && <span className="ml-3">Fotos: {credit}</span>}
               </p>
@@ -86,7 +86,7 @@ export const Gallery = ({
             <button
               onClick={onClose}
               aria-label="Galerie schließen"
-              className="shrink-0 p-2 rounded-full text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+              className="shrink-0 p-2 rounded-full text-muted hover:text-fg hover:bg-surface-raised transition-colors"
             >
               <CloseIcon />
             </button>
@@ -122,14 +122,14 @@ export const Gallery = ({
               <button
                 onClick={prev}
                 aria-label="Vorheriges Bild"
-                className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-900/70 text-slate-200 hover:bg-brand-primary-600 hover:text-white transition-colors hidden sm:block"
+                className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-canvas/70 text-fg hover:bg-surface-raised transition-colors hidden sm:block"
               >
                 <ChevronLeftIcon fontSize="large" />
               </button>
               <button
                 onClick={next}
                 aria-label="Nächstes Bild"
-                className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-900/70 text-slate-200 hover:bg-brand-primary-600 hover:text-white transition-colors hidden sm:block"
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-canvas/70 text-fg hover:bg-surface-raised transition-colors hidden sm:block"
               >
                 <ChevronRightIcon fontSize="large" />
               </button>
@@ -143,7 +143,7 @@ export const Gallery = ({
                     onClick={() => setIndex(i)}
                     aria-label={`Bild ${i + 1} anzeigen`}
                     aria-current={i === index}
-                    className={`relative shrink-0 w-20 h-14 sm:w-24 sm:h-16 rounded-lg overflow-hidden border-2 transition-all ${
+                    className={`relative shrink-0 w-20 h-14 sm:w-24 sm:h-16 rounded-sm overflow-hidden border-2 transition-all ${
                       i === index
                         ? "border-brand-primary-400 opacity-100"
                         : "border-transparent opacity-50 hover:opacity-100"

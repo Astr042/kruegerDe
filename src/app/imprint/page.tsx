@@ -10,21 +10,16 @@ const ImprintPage = () => {
       <Navbar />
 
       {/* Main Content */}
-      <main className="relative min-h-screen bg-linear-to-br from-slate-900 via-brand-secondary-900/20 to-slate-900 pt-20 pb-16 px-4 sm:px-6 lg:pt-32 lg:pb-24 lg:px-8">
-        {/* Background decoration */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-40 -left-20 w-80 h-80 bg-brand-primary-500/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 -right-20 w-96 h-96 bg-brand-accent-emerald-500/5 rounded-full blur-3xl"></div>
-        </div>
+      <main className="relative min-h-screen bg-canvas pt-20 pb-24 px-4 sm:px-6 lg:pt-28 lg:pb-32 lg:px-8">
 
-        <div className="relative max-w-4xl mx-auto">
+        <div className="relative max-w-3xl mx-auto">
           {/* Content Container */}
-          <div className="bg-linear-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-xl rounded-3xl p-8 lg:p-12 shadow-2xl border border-slate-700/50">
-            <h1 className="text-4xl lg:text-5xl font-bold mb-8 text-transparent bg-clip-text bg-linear-to-r from-brand-primary-400 to-brand-secondary-400">
+          <div>
+            <h1 className="text-5xl lg:text-6xl mb-12 text-fg">
               Imprint / Impressum
             </h1>
 
-            <div className="space-y-6 text-slate-300">
+            <div className="space-y-10 text-muted">
               <div>
                 <p className="text-lg leading-relaxed">
                   Christian Hollatz
@@ -37,7 +32,7 @@ const ImprintPage = () => {
               </div>
 
               <div>
-                <h2 className="text-2xl font-semibold mb-3 text-brand-primary-400">
+                <h2 className="text-2xl mb-3 text-fg">
                   Kontakt
                 </h2>
                 <p className="text-lg leading-relaxed">
@@ -48,7 +43,7 @@ const ImprintPage = () => {
               </div>
 
               <div>
-                <h2 className="text-2xl font-semibold mb-3 text-brand-primary-400">
+                <h2 className="text-2xl mb-3 text-fg">
                   Verbraucher&shy;streit&shy;beilegung/Universal&shy;schlichtungs&shy;stelle
                 </h2>
                 <p className="text-lg leading-relaxed">
@@ -59,7 +54,7 @@ const ImprintPage = () => {
               </div>
 
               <div>
-                <h2 className="text-2xl font-semibold mb-3 text-brand-primary-400">
+                <h2 className="text-2xl mb-3 text-fg">
                   Zentrale Kontaktstelle nach dem Digital Services Act - DSA
                   (Verordnung (EU) 2022/265)
                 </h2>
@@ -80,13 +75,13 @@ const ImprintPage = () => {
             </div>
 
             {/* Back to Home Button */}
-            <div className="mt-12 text-center">
+            <div className="mt-16 border-t border-line pt-8">
               <Link
                 href="/"
-                className="inline-flex items-center px-8 py-4 bg-linear-to-r from-brand-primary-500 to-brand-primary-600 hover:from-brand-primary-600 hover:to-brand-primary-700 text-white font-semibold rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-brand-primary-500/25 transform hover:-translate-y-1 transition-all duration-300 group"
+                className="group inline-flex items-center text-sm text-muted hover:text-fg transition-colors duration-200"
               >
                 <svg
-                  className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform duration-300"
+                  className="w-4 h-4 mr-2 group-hover:-translate-x-0.5 transition-transform duration-200"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >

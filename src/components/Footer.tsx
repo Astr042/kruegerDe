@@ -90,69 +90,61 @@ import { MailtoLink } from "./MailtoLink";
 export const Footer = () => {
   return (
     <footer
-      className="relative bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 border-t border-slate-700/50"
+      id="kontakt"
+      className="bg-linear-to-b from-band to-forest px-4 sm:px-6 lg:px-8"
       aria-labelledby="footer-heading"
     >
-      <h2 id="footer-heading" className="sr-only">
-        Footer
-      </h2>
-
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-primary-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute top-0 right-0 w-80 h-80 bg-brand-accent-emerald-500/5 rounded-full blur-3xl"></div>
-      </div>
-
-      <div className="relative max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-20 lg:px-8">
-        {/* Main Footer Content */}
-        <div className="text-center mb-12">
-          <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-brand-primary-400 to-brand-secondary-400 mb-4">
-            Fabian Krüger
-          </h3>
-          <p className="text-slate-400 text-lg mb-8">
-            Professioneller Sprecher für Synchronisation, Hörbücher und Werbung
-          </p>
-
-          {/* Contact Info */}
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mb-8">
-            <MailtoLink email="fk.synchron@gmail.com" variant="footer" />
+      <div className="max-w-7xl mx-auto pt-20 pb-10 lg:pt-28">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-8 pb-20">
+          <div className="lg:col-span-7">
+            <p className="eyebrow text-brand-primary-400 mb-4">Kontakt</p>
+            <h2
+              id="footer-heading"
+              className="text-4xl sm:text-5xl text-fg max-w-xl"
+            >
+              Lass uns über dein Projekt sprechen.
+            </h2>
+            <div className="mt-10">
+              <MailtoLink email="fk.synchron@gmail.com" variant="footer" />
+            </div>
           </div>
 
-          {/* Services Tags */}
-          <ServiceTags className="mb-12" />
+          <div className="lg:col-span-4 lg:col-start-9 lg:self-end">
+            <p className="font-display text-2xl text-fg mb-2">Fabian Krüger</p>
+            <p className="text-muted mb-5">
+              Professioneller Sprecher für Synchronisation, Hörbücher und
+              Werbung
+            </p>
+            <ServiceTags justify="start" />
+          </div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-slate-700/50 pt-8">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            {/* Copyright */}
-            <p className="text-slate-500 text-sm text-center sm:text-left">
-              © 2025 Fabian Krüger • Entwickelt von{" "}
-              <a
-                href="https://christian-hollatz.de"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-brand-primary-400 hover:text-brand-primary-300 transition-colors duration-300 underline decoration-dotted underline-offset-2"
-              >
-                Christian Hollatz
-              </a>
-            </p>
+        <div className="border-t border-line-strong/60 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm">
+          <p className="text-subtle text-center sm:text-left">
+            © 2025 Fabian Krüger · Entwickelt von{" "}
+            <a
+              href="https://christian-hollatz.de"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted hover:text-fg underline decoration-line-strong underline-offset-4 transition-colors duration-200"
+            >
+              Christian Hollatz
+            </a>
+          </p>
 
-            {/* Legal Links */}
-            <div className="flex gap-6 text-sm">
-              <Link
-                href="/imprint"
-                className="text-slate-400 hover:text-brand-primary-400 transition-colors duration-300"
-              >
-                Impressum
-              </Link>
-              <Link
-                href="/data-protection"
-                className="text-slate-400 hover:text-brand-primary-400 transition-colors duration-300"
-              >
-                Datenschutz
-              </Link>
-            </div>
+          <div className="flex gap-6">
+            <Link
+              href="/imprint"
+              className="text-muted hover:text-fg transition-colors duration-200"
+            >
+              Impressum
+            </Link>
+            <Link
+              href="/data-protection"
+              className="text-muted hover:text-fg transition-colors duration-200"
+            >
+              Datenschutz
+            </Link>
           </div>
         </div>
       </div>

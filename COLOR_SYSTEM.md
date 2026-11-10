@@ -1,190 +1,55 @@
-# Color System Documentation
+# Design Tokens
 
-This document explains the custom color system implemented in the Tailwind configuration to make the website easily rebrandable.
+All tokens live in the `@theme` block of `src/app/globals.css` (Tailwind v4), so every token is available as a utility (`bg-canvas`, `text-muted`, `border-line`, `font-display`, …). Rebranding means editing that one block.
 
-## Brand Colors
+## Principles
 
-All brand colors are defined as Tailwind v4 theme variables in the `@theme` block of `src/app/globals.css` (prefixed `--color-brand-*`). This allows for easy rebranding by simply changing the color values in one place.
+- **One accent, used sparingly and always solid.** No gradients on text, buttons or badges.
+- **Hierarchy comes from type, spacing and tinted section bands**, not from blur, glow shadows or animated effects.
+- **Tinted surfaces with hairline borders.** Cards and panels use `rounded-lg`; `rounded-full` for badges, play buttons and the primary CTA.
+- **Motion is limited to the voice wave**, and it respects `prefers-reduced-motion`.
 
-### Primary Brand Color (`brand-primary-*`)
+## Typography
 
-The main brand color used throughout the site (currently orange).
+| Token          | Font   | Use                                     |
+| -------------- | ------ | --------------------------------------- |
+| `font-display` | Ledger | All headings (`h1`–`h6` by default)     |
+| `font-sans`    | Inter  | Body, UI, meta                          |
 
-```css
-@theme {
-  /* Replace primary values with blue */
-  --color-brand-primary-300: #93c5fd; /* blue-300 */
-  --color-brand-primary-400: #60a5fa; /* blue-400 */
-  --color-brand-primary-500: #3b82f6; /* blue-500 - main brand */
-  --color-brand-primary-600: #2563eb; /* blue-600 */
-  /* ... etc */
+Ledger ships one weight (400). Never put `font-bold` / `font-semibold` on headings, or the browser will fake-bold them.
 
-  /* Replace secondary values with green */
-  --color-brand-secondary-300: #86efac; /* green-300 */
-  --color-brand-secondary-400: #4ade80; /* green-400 */
-  --color-brand-secondary-500: #22c55e; /* green-500 */
-  /* ... etc */
-}
-```
+`.eyebrow` is the small uppercase, letter-spaced label used above section headings and in meta lines.
 
-**Usage Examples:**
+## Backgrounds & neutrals
 
-- `bg-brand-primary-500` - Main brand background
-- `text-brand-primary-400` - Brand text color
-- `hover:bg-brand-primary-600` - Button hover states
-- `border-brand-primary-500` - Brand borders
+Sections alternate between tinted forest tones so the page has clear bands:
+hero (`.hero-bg` glow) → Projekte (`canvas`) → Hörproben (`band`) → footer (`band` → `forest`).
 
-### Secondary Brand Color (`brand-secondary-*`)
+| Token            | Value     | Use                                   |
+| ---------------- | --------- | ------------------------------------- |
+| `canvas`         | `#0f1714` | Page background                       |
+| `band`           | `#132620` | Alternating section background        |
+| `forest`         | `#173a2e` | Hero glow, footer                     |
+| `surface`        | `#18241f` | Cards on `canvas`                     |
+| `surface-raised` | `#1f2e28` | Panels on `band`, hover states        |
+| `line`           | `#2a3b34` | Hairline borders and dividers         |
+| `line-strong`    | `#3b5047` | Underlines, stronger dividers         |
+| `fg`             | `#eeece6` | Primary text                          |
+| `muted`          | `#a9b3ad` | Body copy, secondary text             |
+| `subtle`         | `#7a8780` | Captions, credits, timestamps         |
 
-The secondary brand color used for gradients and accents (currently pink).
+## Brand
 
-```typescript
-secondary: {
-  50: '#fdf2f8',
-  100: '#fce7f3',
-  200: '#fbcfe8',
-  300: '#f9a8d4',  // Light accent
-  400: '#f472b6',  // Medium accent
-  500: '#ec4899',  // Main secondary color
-  // ... (full range 600-950)
-}
-```
+`brand-primary-50` … `brand-primary-950`: forest green. `brand-secondary-300/400/900`: the original teal, used only in the hero glow.
 
-**Usage Examples:**
+- `brand-primary-400`: accent text, eyebrows, primary links, filled buttons (with `text-canvas`)
+- `brand-primary-300`: hover state for the above
+- `brand-primary-700`: text selection
 
-- `bg-gradient-to-r from-brand-primary-500 to-brand-secondary-500` - Brand gradients
-- `text-brand-secondary-400` - Secondary text highlights
+## Patterns
 
-### Accent Colors (`brand-accent-*`)
-
-Additional accent colors for variety and visual interest.
-
-#### Purple Accent
-
-- `brand-accent-purple-300` - Light purple
-- `brand-accent-purple-400` - Medium purple (main)
-- `brand-accent-purple-500` - Dark purple
-
-#### Indigo Accent
-
-- `brand-accent-indigo-300` - Light indigo
-- `brand-accent-indigo-400` - Medium indigo
-- `brand-accent-indigo-500` - Dark indigo (main)
-
-#### Cyan Accent
-
-- `brand-accent-cyan-300` - Light cyan
-- `brand-accent-cyan-400` - Medium cyan
-- `brand-accent-cyan-500` - Dark cyan (main)
-
-## Migration Examples
-
-### Before (using default Tailwind colors):
-
-```jsx
-<button className="bg-orange-500 hover:bg-orange-600 text-white">
-  Click me
-</button>
-
-<div className="bg-gradient-to-r from-orange-500 to-pink-500">
-  Gradient background
-</div>
-
-<span className="text-orange-400">Highlighted text</span>
-```
-
-### After (using brand colors):
-
-```jsx
-<button className="bg-brand-primary-500 hover:bg-brand-primary-600 text-white">
-  Click me
-</button>
-
-<div className="bg-gradient-to-r from-brand-primary-500 to-brand-secondary-500">
-  Gradient background
-</div>
-
-<span className="text-brand-primary-400">Highlighted text</span>
-```
-
-## How to Rebrand
-
-To change the entire site's color scheme:
-
-1. Open `src/app/globals.css`
-2. Modify the `--color-brand-*` values in the `@theme` block
-3. The changes will automatically apply site-wide
-
-### Example: Changing to a Blue/Green Theme
-
-```typescript
-brand: {
-  primary: {
-    // Replace orange values with blue
-    300: '#93c5fd', // blue-300
-    400: '#60a5fa', // blue-400
-    500: '#3b82f6', // blue-500 - main brand
-    600: '#2563eb', // blue-600
-    // ... etc
-  },
-  secondary: {
-    // Replace pink values with green
-    300: '#86efac', // green-300
-    400: '#4ade80', // green-400
-    500: '#22c55e', // green-500
-    // ... etc
-  }
-}
-```
-
-## Components Updated
-
-The following components have been updated to use the new brand color system:
-
-- ✅ `VideoPlayer.tsx` - Fully migrated
-- 🔄 `AudioPlayer.tsx` - Needs migration
-- 🔄 `Header.tsx` - Needs migration
-- 🔄 `Footer.tsx` - Needs migration
-- 🔄 `Downloads.tsx` - Needs migration
-- 🔄 `ServiceTags.tsx` - Needs migration
-- 🔄 `MailtoLink.tsx` - Needs migration
-
-## Color Usage Patterns
-
-### Buttons
-
-- Primary: `bg-brand-primary-500 hover:bg-brand-primary-600`
-- Secondary: `bg-brand-secondary-500 hover:bg-brand-secondary-600`
-
-### Text
-
-- Headers: `text-brand-primary-400` or gradients
-- Highlights: `text-brand-primary-400`
-- Links: `text-brand-primary-400 hover:text-brand-primary-300`
-
-### Backgrounds
-
-- Cards: `bg-slate-800` (neutral)
-- Accents: `bg-brand-primary-500/10` (with opacity)
-- Gradients: `from-brand-primary-500 to-brand-secondary-500`
-
-### Borders
-
-- Default: `border-slate-700`
-- Hover: `hover:border-brand-primary-500/30`
-- Focus: `focus:ring-brand-primary-500`
-
-## Best Practices
-
-1. **Always use brand colors for brand-related elements** (buttons, highlights, etc.)
-2. **Keep neutral colors (slate) for backgrounds and UI elements**
-3. **Use opacity variants** (`/20`, `/30`, `/50`) for subtle effects
-4. **Maintain contrast ratios** for accessibility
-5. **Test color changes** across all components before deployment
-
-## Future Improvements
-
-- [ ] Create CSS custom properties for even easier theme switching
-- [ ] Add dark/light mode variants
-- [ ] Create a theme preview tool
-- [ ] Add semantic color names (e.g., `success`, `warning`, `error`)
+- **Primary button:** `bg-brand-primary-400 text-canvas hover:bg-brand-primary-300 rounded-full`
+- **Primary link:** `text-brand-primary-400 hover:text-brand-primary-300`
+- **Secondary link:** `text-muted hover:text-fg underline decoration-line-strong underline-offset-4`
+- **Category badge:** `rounded-full bg-brand-primary-400 text-canvas text-xs font-semibold px-3 py-1`
+- **Section header:** `<SectionHeading eyebrow="…" title="…">intro</SectionHeading>`

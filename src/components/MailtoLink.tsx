@@ -11,47 +11,34 @@ export const MailtoLink: React.FC<MailtoLinkProps> = ({
   className = "",
   variant = "footer",
 }) => {
-  const baseClasses =
-    "group inline-flex items-center transition-all duration-300";
-
   const variantClasses = {
-    header:
-      "bg-slate-800/80 backdrop-blur-md rounded-2xl p-4 justify-center text-slate-200 hover:text-brand-primary-400 focus:outline-hidden focus:ring-2 focus:ring-brand-primary-500 hover:bg-slate-700/80 border border-slate-600/50",
+    header: "text-sm text-muted hover:text-fg",
     footer:
-      "gap-3 bg-slate-800/50 hover:bg-slate-700/50 px-6 py-3 rounded-2xl border border-slate-600/50 hover:border-brand-primary-500/30",
+      "font-display text-2xl sm:text-3xl text-fg underline decoration-line-strong decoration-1 underline-offset-[6px] hover:decoration-brand-primary-400",
   };
-
-  const iconClasses =
-    variant === "header"
-      ? "h-6 w-6 mr-3 group-hover:scale-110 transition-transform duration-300"
-      : "w-5 h-5 text-brand-primary-400 group-hover:scale-110 transition-transform duration-300";
-
-  const textClasses =
-    variant === "header"
-      ? "text-sm font-medium"
-      : "text-slate-300 group-hover:text-brand-primary-400 transition-colors duration-300";
 
   return (
     <a
       href={`mailto:${email}`}
-      className={`${baseClasses} ${variantClasses[variant]} ${className}`}
+      className={`group inline-flex items-center gap-2 transition-colors duration-200 ${variantClasses[variant]} ${className}`}
     >
-      <svg
-        className={iconClasses}
-        fill="currentColor"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox={variant === "header" ? "0 0 512 512" : "0 0 20 20"}
-      >
-        {variant === "header" ? (
-          <path d="M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z" />
-        ) : (
-          <>
-            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-          </>
-        )}
-      </svg>
-      <span className={textClasses}>{email}</span>
+      {variant === "header" && (
+        <svg
+          className="w-4 h-4 text-subtle group-hover:text-brand-primary-400 transition-colors"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={1.5}
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
+          />
+        </svg>
+      )}
+      <span>{email}</span>
     </a>
   );
 };

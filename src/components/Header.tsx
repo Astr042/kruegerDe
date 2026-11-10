@@ -5,86 +5,99 @@ import { ServiceTags } from "./ServiceTags";
 import { VoiceWave } from "./VoiceWave";
 import { MailtoLink } from "./MailtoLink";
 
+const navLinks = [
+  { href: "#projekte", label: "Projekte" },
+  { href: "#hörproben", label: "Hörproben" },
+  { href: "#kontakt", label: "Kontakt" },
+];
+
 export const Header = () => {
   return (
-    <div className="relative min-h-screen bg-linear-to-br from-slate-900 via-brand-secondary-900 to-slate-900 overflow-hidden bg-animated">
-      {/* Animated background elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-brand-primary-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-brand-accent-emerald-500/10 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "1s" }}
-        ></div>
-        <div
-          className="absolute top-1/2 left-1/2 w-64 h-64 bg-brand-accent-teal-500/10 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "2s" }}
-        ></div>
+    <header className="relative hero-bg overflow-hidden px-4 sm:px-6 lg:px-8 lg:min-h-[100svh]">
+      {/* Top bar */}
+      <div className="relative z-20 max-w-7xl mx-auto">
+        <div className="flex items-center justify-between gap-6 py-6 lg:w-1/2 lg:pr-12">
+          <nav aria-label="Hauptnavigation">
+            <ul className="flex gap-6 text-sm text-muted">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="hover:text-fg transition-colors duration-200"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <div className="hidden sm:block">
+            <MailtoLink email="fk.synchron@gmail.com" variant="header" />
+          </div>
+        </div>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="relative pb-8 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
-          {/* Contact Email with modern styling */}
-          <div className="absolute top-6 left-6 z-20">
-            <MailtoLink email="fk.synchron@gmail.com" />
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="pt-12 pb-16 sm:pt-20 lg:w-1/2 lg:pr-12 lg:pt-[18vh] lg:pb-32">
+          <div className="flex items-center gap-4 mb-8">
+            <VoiceWave justify="start" size={1.25} />
+            <p className="eyebrow text-brand-primary-400">Sprecher</p>
           </div>
 
-          <main className="pt-32 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="sm:text-center lg:text-left">
-              {/* Voice wave animation */}
-              <VoiceWave className="mb-8" justify="start" />
+          <h1 className="font-display text-6xl sm:text-7xl xl:text-8xl text-fg leading-[0.95] tracking-tight">
+            Fabian
+            <br />
+            Krüger
+          </h1>
 
-              <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-linear-to-r from-brand-primary-400 via-brand-secondary-400 to-brand-accent-emerald-400 sm:text-6xl md:text-7xl lg:text-8xl leading-tight pb-2">
-                Fabian Krüger
-              </h1>
+          <p className="mt-8 text-xl sm:text-2xl text-muted font-light max-w-md">
+            <span className="text-fg">Die Stimme</span> für dein Projekt.
+          </p>
 
-              <p className="mt-6 text-2xl text-slate-300 leading-relaxed font-light max-w-2xl">
-                <span className="text-brand-primary-400 font-medium">
-                  Die Stimme
-                </span>{" "}
-                für dein Projekt
-              </p>
+          <ServiceTags className="mt-6" justify="start" />
 
-              {/* Additional tagline */}
-              <ServiceTags className="mt-8" justify="start" />
-
-              {/* CTA Button */}
-              <div className="mt-10">
-                <a
-                  href="#hörbuch"
-                  className="inline-flex items-center px-8 py-4 bg-linear-to-r from-brand-primary-500 to-brand-secondary-500 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl hover:shadow-brand-primary-500/25 transform hover:-translate-y-1 transition-all duration-300 glow-primary"
+          <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <a
+              href="#hörproben"
+              className="inline-flex items-center gap-3 rounded-full bg-brand-primary-400 pl-2 pr-6 py-2 text-canvas font-medium hover:bg-brand-primary-300 transition-colors duration-200"
+            >
+              <span className="inline-flex w-8 h-8 items-center justify-center rounded-full bg-canvas text-brand-primary-400">
+                <svg
+                  className="w-3.5 h-3.5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
-                  <svg
-                    className="w-5 h-5 mr-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  Hörproben entdecken
-                </a>
-              </div>
-            </div>
-          </main>
+                  <path d="M6.5 5.14v13.72a1 1 0 0 0 1.52.85l10.6-6.86a1 1 0 0 0 0-1.7L8.02 4.29A1 1 0 0 0 6.5 5.14Z" />
+                </svg>
+              </span>
+              Hörproben anhören
+            </a>
+            <a
+              href="#projekte"
+              className="text-fg underline decoration-line-strong underline-offset-[6px] hover:decoration-brand-primary-400 transition-colors duration-200"
+            >
+              Projekte ansehen
+            </a>
+          </div>
         </div>
       </div>
 
-      {/* Hero Image with modern styling */}
-      <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-        <div className="relative h-56 w-full sm:h-72 md:h-96 lg:w-full lg:h-full">
+      {/* Portrait */}
+      <div className="relative -mx-4 sm:-mx-6 lg:mx-0 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+        <div className="relative h-[28rem] w-full sm:h-[36rem] lg:h-full">
           <Image
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover object-[50%_35%]"
             src={fabiHeader}
-            alt="Fabian Krüger - Professioneller Sprecher"
+            alt="Porträt von Fabian Krüger"
+            sizes="(min-width: 1024px) 50vw, 100vw"
             priority
           />
-          {/* Overlay gradient */}
-          <div className="absolute inset-0 bg-linear-to-l from-transparent via-slate-900/30 to-slate-900/60 lg:via-transparent lg:to-slate-900/80"></div>
+          {/* Blend the photo into the page */}
+          <div className="absolute inset-0 bg-linear-to-t from-canvas via-transparent to-canvas/90 lg:bg-linear-to-r lg:from-canvas lg:via-canvas/10 lg:to-transparent" />
+          <div className="hidden lg:block absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-canvas to-transparent" />
         </div>
       </div>
-    </div>
+    </header>
   );
 };

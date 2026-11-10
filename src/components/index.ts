@@ -8,3 +8,4 @@ export * from "./ServiceTags";
 export * from "./VoiceWave";
 export * from "./MailtoLink";
 export * from "./PlayPauseButton";
+export * from "./SectionHeading";

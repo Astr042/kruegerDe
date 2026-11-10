@@ -232,8 +232,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
   return (
     <div
-      className={`group relative md:overflow-visible overflow-hidden bg-linear-to-br from-slate-800 to-slate-900 transition-all duration-300 ${
-        rounded ? "rounded-3xl" : ""
+      className={`group relative overflow-hidden bg-black aspect-video ${
+        rounded ? "rounded-lg border border-line" : ""
       }`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -243,7 +243,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         ref={videoRef}
         src={videoSrc}
         poster={posterSrc}
-        className="w-full h-auto rounded-3xl"
+        className="block w-full h-full object-contain"
+        aria-label={title}
         onClick={togglePlay}
         onTouchStart={(e) => {
           // Prevent double-tap zoom on mobile
@@ -256,13 +257,13 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       {/* Loading Spinner */}
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-          <div className="w-12 h-12 border-4 border-brand-primary-500 border-t-transparent rounded-full animate-spin"></div>
+          <div className="w-10 h-10 border-2 border-fg/80 border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
 
       {/* Play Button Overlay (only when not started yet) */}
       {!hasStarted && !isLoading && (
-        <div className="rounded-3xl absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300 pointer-events-none">
+        <div className="absolute inset-0 flex items-center justify-center bg-canvas/25 group-hover:bg-canvas/10 transition-colors duration-300 pointer-events-none">
           <div
             onClick={(e) => {
               e.stopPropagation();
@@ -271,14 +272,13 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             onTouchStart={(e) => {
               e.stopPropagation();
             }}
-            className="pointer-events-auto transform hover:scale-110 active:scale-105 transition-all duration-300 touch-manipulation"
+            className="pointer-events-auto touch-manipulation"
           >
             <PlayPauseButton
               isPlaying={isPlaying}
               isLoading={isLoading}
               onPlayPause={togglePlay}
               size="lg"
-              className="p-6 shadow-2xl"
             />
           </div>
         </div>
@@ -286,7 +286,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
       {/* Custom Controls */}
       <div
-        className={`absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 via-black/40 to-transparent p-6 transition-all duration-300 ${
+        className={`absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 via-black/40 to-transparent px-5 pt-10 pb-4 transition-all duration-300 ${
           showControls
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 translate-y-2 pointer-events-none"
@@ -295,19 +295,19 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         {/* Progress Bar */}
         <div className="mb-4">
           <div
-            className="w-full h-2 bg-white/20 rounded-full cursor-pointer group/progress"
+            className="w-full h-[3px] bg-white/25 rounded-full cursor-pointer group/progress"
             onClick={handleSeek}
           >
             <div
-              className="h-full bg-linear-to-r from-brand-primary-500 to-brand-secondary-500 rounded-full relative transition-all duration-150"
+              className="h-full bg-brand-primary-400 rounded-full relative transition-[width] duration-100"
               style={{ width: `${progress}%` }}
             >
-              <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg opacity-0 group-hover/progress:opacity-100 transition-opacity duration-200"></div>
+              <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-fg rounded-full opacity-0 group-hover/progress:opacity-100 transition-opacity duration-200"></div>
             </div>
           </div>
 
           {/* Time Display */}
-          <div className="flex justify-between text-sm text-white/80 mt-2">
+          <div className="flex justify-between text-xs text-white/70 mt-2 tabular-nums">
             <span>{formatTime(currentTime)}</span>
             <span>{formatTime(videoDuration)}</span>
           </div>
@@ -319,7 +319,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             {/* Skip Backward */}
             <button
               onClick={() => skipTime(-10)}
-              className="p-2 text-white/80 hover:text-brand-primary-400 transition-colors duration-200 hover:scale-110 transform"
+              className="p-2 text-white/80 hover:text-white transition-colors duration-200"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path
@@ -335,14 +335,13 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
               isPlaying={isPlaying}
               isLoading={false}
               onPlayPause={togglePlay}
-              size="md"
-              className="p-3"
+              size="sm"
             />
 
             {/* Skip Forward */}
             <button
               onClick={() => skipTime(10)}
-              className="p-2 text-white/80 hover:text-brand-primary-400 transition-colors duration-200 hover:scale-110 transform"
+              className="p-2 text-white/80 hover:text-white transition-colors duration-200"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path
@@ -360,7 +359,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             <div className="flex items-center space-x-2">
               <button
                 onClick={toggleMute}
-                className="p-2 text-white/80 hover:text-brand-primary-400 transition-colors duration-200"
+                className="p-2 text-white/80 hover:text-white transition-colors duration-200"
               >
                 {isMuted || volume === 0 ? (
                   <svg
@@ -401,7 +400,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             {/* Fullscreen */}
             <button
               onClick={toggleFullscreen}
-              className="p-2 text-white/80 hover:text-brand-primary-400 transition-colors duration-200 hover:scale-110 transform"
+              className="p-2 text-white/80 hover:text-white transition-colors duration-200"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path
@@ -416,7 +415,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             <a
               href={videoSrc}
               download
-              className="p-2 text-white/80 hover:text-brand-primary-400 transition-colors duration-200 hover:scale-110 transform"
+              className="p-2 text-white/80 hover:text-white transition-colors duration-200"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path
@@ -430,12 +429,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         </div>
       </div>
 
-      {/* Title Overlay */}
-      {title && (
-        <div className="absolute top-0 left-0 md:-top-4 md:-left-4 bg-linear-to-r from-brand-accent-emerald-500 to-brand-accent-teal-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-          {title}
-        </div>
-      )}
     </div>
   );
 };

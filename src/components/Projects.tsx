@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import { Gallery, GalleryImage } from "./Gallery";
+import { SectionHeading } from "./SectionHeading";
 
 import buch from "../assets/buch.png";
 import holmesLippe from "../assets/projects/holmes-lippe.jpg";
@@ -257,17 +258,23 @@ const formatMonth = (isoDate: string) => {
 
 const ArrowIcon = () => (
   <svg
-    className="w-4 h-4 ml-2 group-hover/link:translate-x-1 transition-transform duration-300"
-    fill="currentColor"
-    viewBox="0 0 20 20"
+    className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-0.5"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={1.75}
+    viewBox="0 0 24 24"
+    aria-hidden="true"
   >
     <path
-      fillRule="evenodd"
-      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-      clipRule="evenodd"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M5 12h14m-5-5 5 5-5 5"
     />
   </svg>
 );
+
+const secondaryAction =
+  "text-sm text-muted hover:text-fg underline decoration-line-strong underline-offset-4 hover:decoration-fg transition-colors duration-200";
 
 const ProjectCard = ({ project }: { project: Project }) => {
   const [galleryOpen, setGalleryOpen] = useState(false);
@@ -276,82 +283,81 @@ const ProjectCard = ({ project }: { project: Project }) => {
     : project.title;
 
   return (
-    <article className="group flex flex-col bg-linear-to-br from-slate-800/60 to-slate-900/60 backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl border border-slate-700/50 hover:border-brand-primary-500/30 transition-all duration-500 hover:shadow-brand-primary-500/10">
+    <article className="group flex flex-col overflow-hidden rounded-lg bg-surface border border-line hover:border-brand-primary-400/40 transition-colors duration-300">
       {project.image && (
-        <div className="relative aspect-square bg-slate-950 overflow-hidden">
-          <Image
-            src={project.image}
-            alt={alt}
-            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className={`w-full h-full ${
-              project.imageFit === "contain" ? "object-contain" : "object-cover"
-            }`}
-          />
-          {project.gallery && (
-            <button
-              onClick={() => setGalleryOpen(true)}
-              aria-label={`Galerie öffnen: ${project.title}`}
-              className="absolute inset-0 flex items-end justify-end p-4 bg-linear-to-t from-slate-950/60 via-transparent to-transparent opacity-90 hover:opacity-100 transition-opacity cursor-zoom-in"
-            >
-              <span className="bg-slate-900/80 text-slate-200 px-3 py-1 rounded-full text-sm font-semibold">
-                {project.gallery.length} Fotos
-              </span>
-            </button>
-          )}
-          <div className="absolute top-4 left-4 bg-linear-to-r from-brand-primary-500 to-brand-secondary-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
-            {project.category}
+        <figure>
+          <div className="relative aspect-square bg-canvas overflow-hidden">
+            <Image
+              src={project.image}
+              alt={alt}
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              className={`w-full h-full ${
+                project.imageFit === "contain"
+                  ? "object-contain"
+                  : "object-cover"
+              }`}
+            />
+            {project.gallery && (
+              <button
+                onClick={() => setGalleryOpen(true)}
+                aria-label={`Galerie öffnen: ${project.title}`}
+                className="absolute inset-0 flex items-end justify-end p-3 cursor-zoom-in"
+              >
+                <span className="bg-canvas/85 text-fg px-2.5 py-1 rounded-sm text-xs font-medium tracking-wide">
+                  {project.gallery.length} Fotos
+                </span>
+              </button>
+            )}
+            <span className="absolute top-3 left-3 rounded-full bg-brand-primary-400 px-3 py-1 text-xs font-semibold text-canvas">
+              {project.category}
+            </span>
           </div>
-        </div>
+          {project.credit && (
+            <figcaption className="px-6 pt-3 text-xs text-subtle">
+              Bild: {project.credit}
+            </figcaption>
+          )}
+        </figure>
       )}
 
-      <div className="flex flex-col flex-1 p-6">
-        {project.credit && (
-          <p className="text-xs text-slate-500 -mt-3 mb-3">
-            Bild: {project.credit}
-          </p>
-        )}
-        <p className="text-sm text-brand-primary-400 font-medium mb-2">
-          {formatMonth(project.date)}
+      <div className="flex flex-col flex-1 px-6 pt-4 pb-6">
+        <p className="eyebrow text-brand-primary-400 mb-3">
+          <time dateTime={project.date}>{formatMonth(project.date)}</time>
         </p>
         {project.series && (
-          <p className="text-sm text-slate-400 mb-1">{project.series}</p>
+          <p className="text-sm text-muted mb-1">{project.series}</p>
         )}
-        <h4 className="text-2xl font-bold text-slate-200 mb-3 group-hover:text-brand-primary-400 transition-colors duration-300">
-          {project.title}
-        </h4>
+        <h3 className="text-2xl text-fg mb-3 group-hover:text-brand-primary-200 transition-colors duration-300">{project.title}</h3>
         {project.role && (
-          <p className="text-slate-300 mb-3">
-            Rolle: <span className="font-semibold">{project.role}</span>
+          <p className="text-sm text-muted mb-3">
+            Rolle: <span className="text-fg">{project.role}</span>
           </p>
         )}
-        <p className="text-slate-400 leading-relaxed mb-6">
+        <p className="text-muted leading-relaxed mb-6">
           {project.description}
         </p>
 
-        <div className="mt-auto flex flex-wrap items-center gap-3">
+        <div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-3">
           {project.link && (
             <a
               href={project.link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 bg-linear-to-r from-brand-primary-500 to-brand-primary-600 hover:from-brand-primary-600 hover:to-brand-primary-700 text-white text-sm font-semibold rounded-xl shadow-lg transition-all duration-300 group/link"
+              className="group/link inline-flex items-center gap-1.5 text-sm font-medium text-brand-primary-400 hover:text-brand-primary-300 transition-colors duration-200"
             >
               {project.link.label}
               <ArrowIcon />
             </a>
           )}
           {project.sampleHref && (
-            <a
-              href={project.sampleHref}
-              className="inline-flex items-center px-4 py-2 border border-brand-accent-emerald-500/50 text-brand-accent-emerald-400 hover:bg-brand-accent-emerald-500/10 text-sm font-semibold rounded-xl transition-all duration-300"
-            >
+            <a href={project.sampleHref} className={secondaryAction}>
               Hörprobe
             </a>
           )}
           {project.gallery && (
             <button
               onClick={() => setGalleryOpen(true)}
-              className="inline-flex items-center px-4 py-2 border border-brand-accent-emerald-500/50 text-brand-accent-emerald-400 hover:bg-brand-accent-emerald-500/10 text-sm font-semibold rounded-xl transition-all duration-300"
+              className={secondaryAction}
             >
               Galerie
             </button>
@@ -363,7 +369,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
         <Gallery
           title={project.title}
           images={project.gallery}
-        credit={project.credit}
+          credit={project.credit}
           open={galleryOpen}
           onClose={() => setGalleryOpen(false)}
         />
@@ -376,30 +382,14 @@ export const Projects = () => {
   return (
     <section
       id="projekte"
-      className="relative bg-linear-to-br from-slate-900 via-brand-primary-900/10 to-slate-900 pt-20 pb-32 px-4 sm:px-6 lg:pt-32 lg:pb-40 lg:px-8"
+      className="relative bg-canvas pt-24 pb-28 px-4 sm:px-6 lg:pt-32 lg:pb-36 lg:px-8"
     >
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 -right-20 w-96 h-96 bg-brand-secondary-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-40 -left-20 w-80 h-80 bg-brand-primary-500/5 rounded-full blur-3xl"></div>
-      </div>
+      <div className="max-w-7xl mx-auto">
+        <SectionHeading eyebrow="Bisherige Arbeiten" title="Projekte">
+          Von Hörspielreihen über Live-Bühnen bis zum Audio-Walk – eine Auswahl
+          der Produktionen, an denen ich mitwirken durfte.
+        </SectionHeading>
 
-      <div className="relative w-full max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-linear-to-r from-brand-primary-400 via-brand-secondary-400 to-brand-accent-emerald-400 mb-6 pb-2">
-            Projekte
-          </h2>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Von Hörspielreihen über Live-Bühnen bis zum Audio-Walk – eine
-            Auswahl der Produktionen, an denen ich mitwirken durfte
-          </p>
-        </div>
-
-        {/* Past projects */}
-        <h3 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-linear-to-r from-brand-primary-400 to-brand-secondary-400 mb-8 px-4">
-          Bisherige Projekte
-        </h3>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
             <ProjectCard key={project.title} project={project} />

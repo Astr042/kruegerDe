@@ -1,50 +1,44 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-brand-primary-50: #f0fdf4;
-  --color-brand-primary-100: #dcfce7;
-  --color-brand-primary-200: #bbf7d0;
-  --color-brand-primary-300: #86efac;
-  --color-brand-primary-400: #4ade80;
-  --color-brand-primary-500: #16a34a;
-  --color-brand-primary-600: #15803d;
-  --color-brand-primary-700: #166534;
-  --color-brand-primary-800: #14532d;
-  --color-brand-primary-900: #14532d;
-  --color-brand-primary-950: #052e16;
+  /* Typography */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Ledger", Georgia, "Times New Roman", serif;
 
-  --color-brand-secondary-50: #f0fdf9;
-  --color-brand-secondary-100: #ccfbf1;
-  --color-brand-secondary-200: #99f6e4;
-  --color-brand-secondary-300: #5eead4;
-  --color-brand-secondary-400: #2dd4bf;
-  --color-brand-secondary-500: #14b8a6;
-  --color-brand-secondary-600: #0d9488;
-  --color-brand-secondary-700: #0f766e;
-  --color-brand-secondary-800: #115e59;
-  --color-brand-secondary-900: #134e4a;
-  --color-brand-secondary-950: #042f2e;
+  /* Neutrals – deep forest tones rather than plain black */
+  --color-canvas: #0f1714;
+  --color-band: #132620; /* alternating section background */
+  --color-forest: #173a2e; /* hero glow, footer */
+  --color-surface: #18241f; /* cards on canvas */
+  --color-surface-raised: #1f2e28; /* cards on band, hover states */
+  --color-line: #2a3b34;
+  --color-line-strong: #3b5047;
+  --color-fg: #eeece6;
+  --color-muted: #a9b3ad;
+  --color-subtle: #7a8780;
 
-  --color-brand-accent-emerald-300: #6ee7b7;
-  --color-brand-accent-emerald-400: #34d399;
-  --color-brand-accent-emerald-500: #10b981;
+  /* Brand – forest green, used solid (no gradients) */
+  --color-brand-primary-50: #effaf3;
+  --color-brand-primary-100: #d8f3e1;
+  --color-brand-primary-200: #b4e7c5;
+  --color-brand-primary-300: #93dcac;
+  --color-brand-primary-400: #6ccb8c;
+  --color-brand-primary-500: #43ad69;
+  --color-brand-primary-600: #338b53;
+  --color-brand-primary-700: #2a6d43;
+  --color-brand-primary-800: #235536;
+  --color-brand-primary-900: #1a3d28;
+  --color-brand-primary-950: #0d2417;
 
-  --color-brand-accent-teal-300: #5eead4;
-  --color-brand-accent-teal-400: #2dd4bf;
-  --color-brand-accent-teal-500: #14b8a6;
-
-  --color-brand-accent-lime-300: #bef264;
-  --color-brand-accent-lime-400: #a3e635;
-  --color-brand-accent-lime-500: #84cc16;
+  /* Secondary – teal from the original palette, for quiet variety */
+  --color-brand-secondary-300: #7fd6c6;
+  --color-brand-secondary-400: #4fc0ad;
+  --color-brand-secondary-900: #12403a;
 }
 
 /*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
+  The default border color has changed to `currentcolor` in Tailwind CSS v4.
+  Default to the hairline token so bare `border` utilities stay subtle.
 */
 @layer base {
   *,
@@ -52,7 +46,7 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
+    border-color: var(--color-line, currentcolor);
   }
 }
 
@@ -75,118 +69,96 @@
   font-display: swap;
 }
 
-:root {
-  --background: #0f0f23;
-  --foreground: #e2e8f0;
-  --accent-primary: #16a34a; /* forest green - brand primary 500 */
-  --accent-secondary: #14b8a6; /* sage green - brand secondary 500 */
-  --accent-tertiary: #10b981; /* emerald - brand accent emerald 500 */
-  --surface: #1e1e3f;
-  --surface-light: #2d2d5f;
-}
-
 * {
   box-sizing: border-box;
 }
 
-body {
-  color: var(--foreground);
-  background: linear-gradient(135deg, var(--background) 0%, #1a1a3a 100%);
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  line-height: 1.6;
-  min-height: 100vh;
-}
-
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+  background: var(--color-canvas);
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+body {
+  color: var(--color-fg);
+  background: var(--color-canvas);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--background);
+::selection {
+  background: var(--color-brand-primary-700);
+  color: var(--color-fg);
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--accent-primary);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #4ade80; /* lighter forest green - brand primary 400 */
-}
-
-/* Modern focus styles */
-button:focus,
-a:focus {
-  outline: 2px solid var(--accent-primary);
-  outline-offset: 2px;
-}
-
-/* Glow effects */
-.glow-primary {
-  box-shadow: 0 0 20px rgba(22, 163, 74, 0.3); /* forest green with opacity */
-}
-
-.glow-secondary {
-  box-shadow: 0 0 20px rgba(20, 184, 166, 0.3); /* sage green with opacity */
-}
-
-/* Animated background elements */
-.bg-animated::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2316a34a' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  animation: float 20s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-/* Pulse animation for audio elements */
-@keyframes pulse-audio {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.02);
-  }
-}
-
-.pulse-audio {
-  animation: pulse-audio 2s ease-in-out infinite;
-}
-
-/* Typography improvements */
+/* Headings use the serif; Ledger ships one weight, so never fake-bold it */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: "Inter", serif;
+  font-family: var(--font-display);
   font-weight: 400;
-  line-height: 1.2;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 
-/* Microphone wave animation */
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-canvas);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-line-strong);
+  border: 2px solid var(--color-canvas);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-subtle);
+}
+
+/* Keyboard focus only */
+:focus-visible {
+  outline: 2px solid var(--color-brand-primary-400);
+  outline-offset: 3px;
+}
+
+/* Hero background – one soft, static forest glow */
+.hero-bg {
+  background:
+    linear-gradient(to bottom, transparent 60%, var(--color-canvas)),
+    radial-gradient(
+      ellipse 75% 90% at 0% 0%,
+      var(--color-forest),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 30% 45% at 22% 62%,
+      color-mix(in srgb, var(--color-brand-secondary-900) 60%, transparent),
+      transparent 70%
+    ),
+    var(--color-canvas);
+}
+
+/* Small uppercase label used above headings and in meta lines */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Voice wave – the site's signature motif */
 @keyframes wave {
   0%,
   100% {
@@ -201,16 +173,16 @@ h6 {
   display: inline-flex;
   align-items: end;
   gap: 2px;
-  height: 2rem; /* Fixed height to prevent jumping */
+  height: 2rem;
 }
 
 .wave-bar {
   width: 3px;
-  height: 2rem; /* Fixed height */
-  background: var(--accent-primary);
-  border-radius: 2px;
-  animation: wave 1.5s ease-in-out infinite;
-  transform-origin: bottom; /* Scale from bottom */
+  height: 100%;
+  background: var(--color-brand-primary-400);
+  border-radius: 1px;
+  animation: wave 1.6s ease-in-out infinite;
+  transform-origin: bottom;
 }
 
 .wave-bar:nth-child(2) {
@@ -225,47 +197,41 @@ h6 {
 .wave-bar:nth-child(5) {
   animation-delay: 0.8s;
 }
-
-/* Audio and Video Player Slider Styles */
-.slider::-webkit-slider-thumb {
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--accent-primary);
-  cursor: pointer;
-  border: 2px solid #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+.wave-bar:nth-child(6) {
+  animation-delay: 0.3s;
+}
+.wave-bar:nth-child(7) {
+  animation-delay: 0.5s;
 }
 
-.slider::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--accent-primary);
-  cursor: pointer;
-  border: 2px solid #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+/* The voice wave is the brand's signature and stays animated; it is small
+   and slow. Only page-level motion is disabled for reduced-motion users. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
-/* Video Player specific slider (smaller) */
+/* Range inputs (video volume) */
+.video-slider {
+  accent-color: var(--color-brand-primary-400);
+}
+
 .video-slider::-webkit-slider-thumb {
   appearance: none;
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: var(--accent-primary);
+  background: var(--color-fg);
   cursor: pointer;
-  border: 2px solid #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: none;
 }
 
 .video-slider::-moz-range-thumb {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: var(--accent-primary);
+  background: var(--color-fg);
   cursor: pointer;
-  border: 2px solid #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: none;
 }
